@@ -3,14 +3,18 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+<<<<<<< HEAD
     private Collider m_Collider;
 
+=======
+>>>>>>> master
     // Start is called before the first frame update
     private void Start()
     {
-        m_Collider = GetComponent<Collider>();
+        
     }
 
+<<<<<<< HEAD
     private IEnumerator Ghosting()
     {
         if (m_Collider.enabled == true)
@@ -21,12 +25,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+=======
+>>>>>>> master
     // Update is called once per frame
     private void Update()
     {
         if (Input.GetButtonDown("Jump"))
         {
+<<<<<<< HEAD
             StartCoroutine(Ghosting());
+=======
+		
+>>>>>>> master
         }
     }
 }

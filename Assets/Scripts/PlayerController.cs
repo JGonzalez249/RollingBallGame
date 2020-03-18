@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Collider m_Collider;
+    public Collider m_Collider;
 
     // Start is called before the first frame update
     private void Start()
@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetKey(KeyCode.S))
         {
             StartCoroutine(Ghosting());
         }

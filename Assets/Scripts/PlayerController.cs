@@ -1,16 +1,28 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public Collider m_Collider;
+	public Collider m_Collider;
+//	public MyPlayerControls controls;
 
-    // Start is called before the first frame update
-    private void Start()
-    {
-    }
+//    public void OnEnable()
+//    {
+//        if (controls == null)
+//        {
+//            controls = new MyPlayerControls();
+//            controls.gameplay.SetCallbacks(this);
+//        }
+//        controls.gameplay.Enable();
+//    }
 
-    private IEnumerator Ghosting()
+//    public void OnDisable()
+//    {
+//        controls.gameplay.Disable();
+//    }
+
+    private IEnumerator OnGhosting(InputValue value)
     {
         if (m_Collider.enabled == true)
         {
@@ -20,12 +32,5 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.S))
-        {
-            StartCoroutine(Ghosting());
-        }
-    }
+
 }

@@ -1,0 +1,44 @@
+{
+    "name": "Inputs",
+    "maps": [
+        {
+            "name": "Actions",
+            "id": "d74f3fe5-543c-48f9-899a-9232831fd235",
+            "actions": [
+                {
+                    "name": "Ghosting",
+                    "type": "Button",
+                    "id": "390b1ac4-1541-4d20-8908-653c4ff77640",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "617e4d54-fb1e-4d89-a037-815ea93be470",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ghosting",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "04e34866-86d3-4f70-ab10-b0ae7bf3b3e8",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ghosting",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

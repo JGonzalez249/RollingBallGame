@@ -52,11 +52,23 @@ public class Movement : MonoBehaviour
 		yield return fire = true;
 	}
 
+	
+	private IEnumerator OnLeftDpad(InputValue value)
+	{
+		yield return goRight = false;
+	}
+
+	
+	private IEnumerator OnRightDpad(InputValue value)
+	{
+		yield return goRight = true;
+	}
+
 
     // Update is called once per frame
     void Update()
     {
-//Spinning to go right
+//Spinning to go right - EDIT: both ways now
 
 	if (upPress == true)
 	{
@@ -65,17 +77,19 @@ public class Movement : MonoBehaviour
 			if (downPress == true)
 			{
 				//resets speed if you spin the opposite direction
-				if (goRight == false)
-				{
-				force = 0;
-				}
+				//if (goRight == false)
+				//{
+				//force = 0;
+				//}
 
 				upPress = false;
 				rightPress = false;
 				leftPress = false;
 				downPress = false;
-				goRight = true;
+
+				//goRight = true;
 				//StartCoroutine(Charge());
+
 				force++;
 				force++;
 				force++;
@@ -85,7 +99,7 @@ public class Movement : MonoBehaviour
 		}
 	}
 
-//Spinning to go left
+//Spinning to go left - EDIT: both ways now
 
 	if (upPress == true)
 	{
@@ -94,17 +108,19 @@ public class Movement : MonoBehaviour
 			if (downPress == true)
 			{
 				//resets speed if you spin the opposite direction
-				if (goRight == true)
-				{
-				force = 0;
-				}
+				//if (goRight == true)
+				//{
+				//force = 0;
+				//}
 
 				upPress = false;
 				leftPress = false;
 				rightPress = false;
 				downPress = false;
-				goRight = false;
+
+				//goRight = false;
 				//StartCoroutine(Charge());
+
 				force++;
 				force++;
 				force++;

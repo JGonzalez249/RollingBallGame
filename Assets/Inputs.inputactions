@@ -194,6 +194,17 @@
                     "action": "Launch",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "68a95bee-6b73-47a5-8fd8-4db4f07c7ec8",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Launch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

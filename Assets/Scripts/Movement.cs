@@ -5,13 +5,19 @@ using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
-
     public int force;
     public int maxForce;
 
     public bool goRight;
 
+    public bool upPress;
+    public bool downPress;
+    public bool leftPress;
+    public bool rightPress;
+    public bool fire;
+
     public Rigidbody rb;
+
 
     // Start is called before the first frame update
     void Start()
@@ -19,46 +25,127 @@ public class Movement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
+
+	private IEnumerator OnUp(InputValue value)
+	{
+		yield return upPress = true;
+	}
+
+	private IEnumerator OnRight(InputValue value)
+	{
+		yield return rightPress = true;
+	}
+
+	private IEnumerator OnDown(InputValue value)
+	{
+		yield return downPress = true;
+	}
+	
+	
+	private IEnumerator OnLeft(InputValue value)
+	{
+		yield return leftPress = true;
+	}
+
+	private IEnumerator OnLaunch(InputValue value)
+	{
+		yield return fire = true;
+	}
+
+
     // Update is called once per frame
     void Update()
     {
+//Spinning to go right
 
-    }
+	if (upPress == true)
+	{
+		if (rightPress == true)
+		{
+			if (downPress == true)
+			{
+				//resets speed if you spin the opposite direction
+				if (goRight == false)
+				{
+				force = 0;
+				}
 
-    void OnMovement(InputValue value)
-    {
-        var gamepad = Gamepad.current;
-        if (gamepad == null)
-            return; // No gamepad connected.
+				upPress = false;
+				rightPress = false;
+				leftPress = false;
+				downPress = false;
+				goRight = true;
+				//StartCoroutine(Charge());
+				force++;
+				force++;
+				force++;
+				force++;
+				force++;
+			}
+		}
+	}
 
-        //Building charge
-        if (gamepad.leftTrigger.wasPressedThisFrame)
+//Spinning to go left
+
+	if (upPress == true)
+	{
+		if (leftPress == true)
+		{
+			if (downPress == true)
+			{
+				//resets speed if you spin the opposite direction
+				if (goRight == true)
+				{
+				force = 0;
+				}
+
+				upPress = false;
+				leftPress = false;
+				rightPress = false;
+				downPress = false;
+				goRight = false;
+				//StartCoroutine(Charge());
+				force++;
+				force++;
+				force++;
+				force++;
+				force++;
+			}
+		}
+	}
+
+
+
+//press space to launch stored energy
+
+        if (fire == true)
         {
-            Debug.Log("is pressed");
-            StartCoroutine(Charge());
+            if (goRight == true)
+            {
+                rb.AddForce(transform.right * Time.deltaTime * force * 10, ForceMode.Impulse);
+                force = 0;
+            }
+            if (goRight == false)
+            {
+                rb.AddForce(transform.right * Time.deltaTime * force * -10, ForceMode.Impulse);
+                force = 0;
+            }
+	fire = false;
         }
-        //release charge
-        if (gamepad.leftTrigger.wasReleasedThisFrame)
-        {
-            rb.AddForce(transform.right * Time.deltaTime * force * 10, ForceMode.Impulse);
-            StopCoroutine(Charge());
-            force = 0;
-            Debug.Log("isReleased");
 
-
-        }
         if (force > maxForce)
         {
             force = maxForce;
         }
     }
+
     IEnumerator Charge()
     {
-        while (force < maxForce && Gamepad.current.leftTrigger.isPressed) // while force is less than max
+        if (force < maxForce) // while force is less than max
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.5f);
             force++;
-            Debug.Log(force);
         }
+
     }
 }

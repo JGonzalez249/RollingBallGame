@@ -18,6 +18,7 @@ public class Movement : MonoBehaviour
     public int maxMultiplier; // amount of force gained per circle completion
 
     public bool goRight;
+    public bool goLeft;
 
     public bool upPress;
     public bool downPress;
@@ -57,33 +58,33 @@ public class Movement : MonoBehaviour
 
         //Spinning to go right - EDIT: both ways now
 
-    if (upPress == true)
-	{
-		if (rightPress == true)
-		{
-			if (downPress == true)
-			{
-				upPress = false;
-				rightPress = false;
-				leftPress = false;
-				downPress = false;
+        //   if (upPress == true)
+        //{
+        //	if (rightPress == true)
+        //	{
+        //		if (downPress == true)
+        //		{
+        //			upPress = false;
+        //			rightPress = false;
+        //			leftPress = false;
+        //			downPress = false;
 
-                    if (force < maxForce) // don't go over max force
-                    {
-                        force += maxMultiplier;
-                        powerBar.SetSize(force / 100); //update power bar
-                    }
+        //                   if (force < maxForce) // don't go over max force
+        //                   {
+        //                       force += maxMultiplier;
+        //                       powerBar.SetSize(force / 100); //update power bar
+        //                   }
 
-                }
-		}
-	}
+        //               }
+        //	}
+        //}
 
-//Spinning to go left - EDIT: both ways now
+        //Spinning to go left - EDIT: both ways now
 
-	if (upPress == true)
-	{
-		if (leftPress == true)
-		{
+        if (upPress == true)
+        {
+            if (leftPress == true)
+            {
                 if (downPress == true)
                 {
 
@@ -98,26 +99,30 @@ public class Movement : MonoBehaviour
                         powerBar.SetSize(force / 100); //update power bar
                     }
                 }
-		}
-	}
+            }
+        }
 
 
 
-//press fire button to launch stored energy
+        //press fire button to launch stored energy
 
-        if (fire == true)
+        if (goRight == true)
         {
-            if (goRight == true)
+            if(fire == true)
             {
                 rb.AddForce(transform.right * Time.deltaTime * force * 20, ForceMode.Impulse);
                 force = 0;
             }
-            if (goRight == false)
+            
+        }
+        if (goRight == false)
+        {
+            if(fire == true)
             {
                 rb.AddForce(transform.right * Time.deltaTime * force * -20, ForceMode.Impulse);
                 force = 0;
             }
-	        fire = false;
+            
         }
 
         if (force > maxForce)
@@ -146,20 +151,32 @@ public class Movement : MonoBehaviour
 		yield return leftPress = true;
 	}
 
-	private IEnumerator OnLaunch(InputValue value) // fire button
+	//private IEnumerator OnLaunch(InputValue value) // fire button
+	//{
+	//	yield return fire = true;
+	//}
+
+	
+	private IEnumerator OnMoveLeft(InputValue value)
 	{
-		yield return fire = true;
+		yield return goLeft = true;
+        yield return goRight = false;
+
+        if(Gamepad.current.leftTrigger.wasReleasedThisFrame)
+        {
+            yield return fire = true; 
+        }
 	}
 
 	
-	private IEnumerator OnLeftDpad(InputValue value)
-	{
-		yield return goRight = false;
-	}
-
-	
-	private IEnumerator OnRightDpad(InputValue value)
+	private IEnumerator OnMoveRight(InputValue value)
 	{
 		yield return goRight = true;
-	}
+        yield return goLeft = false;
+
+        if (Gamepad.current.rightTrigger.wasReleasedThisFrame)
+        {
+            yield return fire = true;
+        }
+    }
 }

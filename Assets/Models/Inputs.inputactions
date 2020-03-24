@@ -14,14 +14,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Movement",
-                    "type": "Button",
-                    "id": "2bf097c6-f274-4c17-a67b-410f34ce994b",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "Up",
                     "type": "Button",
                     "id": "ce5bf4e5-ba92-4d75-9422-8eba6cbb6ee7",
@@ -62,7 +54,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "LeftDpad",
+                    "name": "MoveLeft",
                     "type": "Button",
                     "id": "6e975b1a-3438-4227-a325-ff4b8d463487",
                     "expectedControlType": "",
@@ -70,7 +62,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "RightDpad",
+                    "name": "MoveRight",
                     "type": "Button",
                     "id": "bd3b5fb4-f787-4e25-b812-4361e7123c33",
                     "expectedControlType": "",
@@ -98,17 +90,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Ghosting",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2a83ebcd-3200-45e1-8999-3c4828681c49",
-                    "path": "<Gamepad>/leftTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -225,11 +206,11 @@
                 {
                     "name": "",
                     "id": "58bf9450-0174-451f-96ee-605dbb6bc995",
-                    "path": "<Gamepad>/dpad/left",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "Press",
                     "processors": "",
                     "groups": "",
-                    "action": "LeftDpad",
+                    "action": "MoveLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -240,18 +221,18 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": "",
-                    "action": "LeftDpad",
+                    "action": "MoveLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "7a7e0cd2-e1ff-4cbd-bde4-7dd7ffd73a42",
-                    "path": "<Gamepad>/dpad/right",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "Press",
                     "processors": "",
                     "groups": "",
-                    "action": "RightDpad",
+                    "action": "MoveRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -262,7 +243,7 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": "",
-                    "action": "RightDpad",
+                    "action": "MoveRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

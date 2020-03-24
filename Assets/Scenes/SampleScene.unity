@@ -205,7 +205,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 88913272}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.96, y: 0.75, z: 0}
+  m_LocalPosition: {x: -12, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 942956601}
@@ -313,11 +313,11 @@ SpringJoint:
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   serializedVersion: 2
-  m_Spring: 10
-  m_Damper: 0.25
+  m_Spring: 1000
+  m_Damper: 1000
   m_MinDistance: 0
-  m_MaxDistance: 0.25
-  m_Tolerance: 0.025
+  m_MaxDistance: 1
+  m_Tolerance: 0.25
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
@@ -2138,13 +2138,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 538714885}
-  m_LocalRotation: {x: 0.0012830003, y: 0.010632157, z: -0.09779, w: 0.99514943}
-  m_LocalPosition: {x: 82.1, y: 13.2, z: -21.023508}
+  m_LocalRotation: {x: 0.0027401876, y: 0.010352795, z: -0.23439382, w: 0.9720828}
+  m_LocalPosition: {x: 83.09999, y: 13.9, z: -21.023508}
   m_LocalScale: {x: 25.757658, y: 1, z: 44.44472}
   m_Children: []
   m_Father: {fileID: 1397333527}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0.26500002, y: 1.1980001, z: -11.222}
+  m_LocalEulerAnglesHint: {x: 0.583, y: 1.08, z: -27.108002}
 --- !u!1 &561819562
 GameObject:
   m_ObjectHideFlags: 0
@@ -2924,7 +2924,7 @@ MonoBehaviour:
     then circle joystick to gain momentum.  Release the trigger to move in that direction.
 
     *Press the Right button to shoot a grapple hook - only sticks to grappleable (red)
-    objects.
+    objects. Press it again to detach.
 
     *Press Right bumper to toggle ghosting (ability to go through things)'
   m_isRightToLeft: 0
@@ -2971,7 +2971,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 249
+  m_firstOverflowCharacterIndex: 275
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -2995,10 +2995,10 @@ MonoBehaviour:
   m_margin: {x: -610.6006, y: 0, z: -629.6379, w: -170.79366}
   m_textInfo:
     textComponent: {fileID: 728498724}
-    characterCount: 318
+    characterCount: 344
     spriteCount: 0
-    spaceCount: 50
-    wordCount: 51
+    spaceCount: 55
+    wordCount: 56
     linkCount: 0
     lineCount: 5
     pageCount: 1
@@ -3325,7 +3325,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 1.875e-42, y: 1.02e-43, z: 3.097e-42, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -6503,7 +6503,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1678202394}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.1, y: 1, z: 0}
+  m_LocalPosition: {x: -12, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6805,7 +6805,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: be692a7ff3179b1458a3caae58d6b850, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6843,7 +6843,7 @@ Transform:
   m_GameObject: {fileID: 1729900897}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 9.05, y: 1.47, z: 22.52}
-  m_LocalScale: {x: 276.93146, y: 1, z: 60.12508}
+  m_LocalScale: {x: 697.8396, y: 1, z: 133.08687}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
@@ -7516,7 +7516,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2001300019}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.91, y: 5.11, z: 0}
+  m_LocalPosition: {x: 16.91, y: 8.9, z: 0}
   m_LocalScale: {x: 27.632246, y: 1, z: 1.8527}
   m_Children: []
   m_Father: {fileID: 0}

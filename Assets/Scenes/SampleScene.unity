@@ -243,16 +243,10 @@ MonoBehaviour:
   LeftTxt: {fileID: 1463176377}
   rb: {fileID: 88913275}
   powerBar: {fileID: 725559762}
-  force: 0
-  maxForce: 100
-  maxMultiplier: 10
+  BarMultiplier: 10
+  speedMultiplier: 20
   goRight: 0
   goLeft: 0
-  upPress: 0
-  downPress: 0
-  leftPress: 0
-  rightPress: 0
-  fire: 0
 --- !u!114 &88913277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2444,8 +2438,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Circle joystick to gain momentum, Hold 'RightTrigger'/'LeftTrigger' to charge
-    in a direction. Release it to move in that direction.
+  m_text: Hold 'RightTrigger'/'LeftTrigger' to stop and charge in a direction, then
+    circle joystick to gain momentum.  Release either trigger to move in that direction.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2514,10 +2508,10 @@ MonoBehaviour:
   m_margin: {x: -610.6006, y: 0, z: -629.6379, w: -170.79366}
   m_textInfo:
     textComponent: {fileID: 728498724}
-    characterCount: 131
+    characterCount: 158
     spriteCount: 0
-    spaceCount: 18
-    wordCount: 20
+    spaceCount: 23
+    wordCount: 24
     linkCount: 0
     lineCount: 2
     pageCount: 1

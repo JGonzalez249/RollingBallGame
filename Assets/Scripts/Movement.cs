@@ -12,19 +12,23 @@ public class Movement : MonoBehaviour
 
     [SerializeField] public PowerBar powerBar;
 
-    public float force;
-
-    public int maxForce;
-    public int maxMultiplier; // amount of force gained per circle completion
+    public int BarMultiplier; // variable multiplier bar increase
+    public int speedMultiplier; // variable multiplies the speed
 
     public bool goRight;
     public bool goLeft;
 
-    public bool upPress;
-    public bool downPress;
-    public bool leftPress;
-    public bool rightPress;
-    public bool fire;
+    private bool upPress;
+    private bool downPress;
+    private bool leftPress;
+    private bool rightPress;
+    private bool fireRight;
+    private bool fireLeft;
+    private bool hold;
+
+    private float force;
+
+    private int maxForce = 100;
 
     // Start is called before the first frame update
     void Start()
@@ -56,81 +60,61 @@ public class Movement : MonoBehaviour
             LeftTxt.SetActive(true);
         }
 
-        //Spinning to go right - EDIT: both ways now
-
-        //   if (upPress == true)
-        //{
-        //	if (rightPress == true)
-        //	{
-        //		if (downPress == true)
-        //		{
-        //			upPress = false;
-        //			rightPress = false;
-        //			leftPress = false;
-        //			downPress = false;
-
-        //                   if (force < maxForce) // don't go over max force
-        //                   {
-        //                       force += maxMultiplier;
-        //                       powerBar.SetSize(force / 100); //update power bar
-        //                   }
-
-        //               }
-        //	}
-        //}
-
-        //Spinning to go left - EDIT: both ways now
-
-        if (upPress == true)
-        {
-            if (leftPress == true || rightPress == true)
+        //Movement
+        if (hold == true) // holding trigger
             {
-                if (downPress == true)
+            if (upPress == true)
+            {
+                if (leftPress == true || rightPress == true)
                 {
-
-                    upPress = false;
-                    leftPress = false;
-                    rightPress = false;
-                    downPress = false;
-
-                    if (force < maxForce) // don't go over max force
+                    if (downPress == true)
                     {
-                        force += maxMultiplier;
-                        powerBar.SetSize(force / 100); //update power bar
+
+                        upPress = false;
+                        leftPress = false;
+                        rightPress = false;
+                        downPress = false;
+
+                        if (force < maxForce) // don't go over max force
+                        {
+                            force += BarMultiplier;
+                            powerBar.SetSize(force / 100); //update power bar
+                        }
                     }
                 }
             }
         }
 
-
-
         //press fire button to launch stored energy
-
         if (goRight == true)
         {
-            if (fire == true)
+            if (fireRight == true)
             {
-                rb.AddForce(transform.right * Time.deltaTime * force * 20, ForceMode.Impulse);
+                rb.AddForce(transform.right * Time.deltaTime * force * speedMultiplier, ForceMode.Impulse);
                 force = 0;
-                fire = false;
+                fireRight = false;
+                fireLeft = false; // dont fire left
             }
 
         }
         if (goRight == false)
         {
-            if (fire == true)
+            if (fireLeft == true)
             {
-                rb.AddForce(transform.right * Time.deltaTime * force * -20, ForceMode.Impulse);
+                rb.AddForce(transform.right * Time.deltaTime * force * -speedMultiplier, ForceMode.Impulse);
                 force = 0;
-                fire = false;
+                fireLeft = false;
+                fireRight = false; // don't fire right
             }
 
         }
 
-        if (force > maxForce)
+        //logic and corrections
+        if (force > maxForce) // don't go above max force
         {
             force = maxForce;
         }
+
     }
     private IEnumerator OnUp(InputValue value)
     {
@@ -158,6 +142,7 @@ public class Movement : MonoBehaviour
     {
         yield return goLeft = true;
         yield return goRight = false;
+        yield return hold = true;
         rb.drag = 2;
     }
 
@@ -166,18 +151,21 @@ public class Movement : MonoBehaviour
     {
         yield return goRight = true;
         yield return goLeft = false;
+        yield return hold = true;
         rb.drag = 2;
     }
 
     private IEnumerator OnMoveRightRelease(InputValue value)
     {
-        yield return fire = true;
+        yield return fireRight = true;
+        yield return hold = false;
         rb.drag = 0;
     }
 
     private IEnumerator OnMoveLeftRelease(InputValue value)
     {
-        yield return fire = true;
+        yield return fireLeft = true;
+        yield return hold = false;
         rb.drag = 0;
     }
 }

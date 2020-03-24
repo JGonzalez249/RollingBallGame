@@ -156,12 +156,12 @@ public class Movement : MonoBehaviour
         {
             if (goRight == true)
             {
-                rb.AddForce(transform.right * Time.deltaTime * force * 10, ForceMode.Impulse);
+                rb.AddForce(transform.right * Time.deltaTime * force * 20, ForceMode.Impulse);
                 force = 0;
             }
             if (goRight == false)
             {
-                rb.AddForce(transform.right * Time.deltaTime * force * -10, ForceMode.Impulse);
+                rb.AddForce(transform.right * Time.deltaTime * force * -20, ForceMode.Impulse);
                 force = 0;
             }
 	fire = false;

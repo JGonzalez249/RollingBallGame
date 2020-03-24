@@ -68,6 +68,22 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "MoveRightRelease",
+                    "type": "Button",
+                    "id": "5b18bc04-3c0c-4e3f-a96d-bd377d17590b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "MoveLeftRelease",
+                    "type": "Button",
+                    "id": "86c336c0-7b2c-40e2-9061-d2395f64af54",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -244,6 +260,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "MoveRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "62f135a8-ffb3-4a9b-82d5-6a963fd15a6a",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveRightRelease",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dbf4a85b-8192-4851-9d88-1c829d3fc3dd",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveLeftRelease",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

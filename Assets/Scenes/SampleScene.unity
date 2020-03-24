@@ -247,6 +247,7 @@ MonoBehaviour:
   maxForce: 100
   maxMultiplier: 10
   goRight: 0
+  goLeft: 0
   upPress: 0
   downPress: 0
   leftPress: 0
@@ -2443,10 +2444,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Circle joystick to gain momentum, then release that momentum with Left
-    trigger.
-
-    Change direction using D Pad.'
+  m_text: Circle joystick to gain momentum, Hold 'RightTrigger'/'LeftTrigger' to charge
+    in a direction. Release it to move in that direction.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2515,10 +2514,10 @@ MonoBehaviour:
   m_margin: {x: -610.6006, y: 0, z: -629.6379, w: -170.79366}
   m_textInfo:
     textComponent: {fileID: 728498724}
-    characterCount: 109
+    characterCount: 131
     spriteCount: 0
-    spaceCount: 16
-    wordCount: 17
+    spaceCount: 18
+    wordCount: 20
     linkCount: 0
     lineCount: 2
     pageCount: 1

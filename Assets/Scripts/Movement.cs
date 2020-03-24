@@ -36,7 +36,7 @@ public class Movement : MonoBehaviour
     }
 
 
-	
+
 
 
     // Update is called once per frame
@@ -83,7 +83,7 @@ public class Movement : MonoBehaviour
 
         if (upPress == true)
         {
-            if (leftPress == true)
+            if (leftPress == true || rightPress == true)
             {
                 if (downPress == true)
                 {
@@ -108,21 +108,22 @@ public class Movement : MonoBehaviour
 
         if (goRight == true)
         {
-            if(fire == true)
+            if (fire == true)
             {
                 rb.AddForce(transform.right * Time.deltaTime * force * 20, ForceMode.Impulse);
                 force = 0;
             }
-            
+
         }
         if (goRight == false)
         {
-            if(fire == true)
+            if (fire == true)
             {
                 rb.AddForce(transform.right * Time.deltaTime * force * -20, ForceMode.Impulse);
                 force = 0;
+                fire = false;
             }
-            
+
         }
 
         if (force > maxForce)
@@ -131,52 +132,51 @@ public class Movement : MonoBehaviour
         }
     }
     private IEnumerator OnUp(InputValue value)
-	{
-		yield return upPress = true;
-	}
+    {
+        yield return upPress = true;
+    }
 
-	private IEnumerator OnRight(InputValue value)
-	{
-		yield return rightPress = true;
-	}
+    private IEnumerator OnRight(InputValue value)
+    {
+        yield return rightPress = true;
+    }
 
-	private IEnumerator OnDown(InputValue value)
-	{
-		yield return downPress = true;
-	}
-	
-	
-	private IEnumerator OnLeft(InputValue value)
-	{
-		yield return leftPress = true;
-	}
+    private IEnumerator OnDown(InputValue value)
+    {
+        yield return downPress = true;
+    }
 
-	//private IEnumerator OnLaunch(InputValue value) // fire button
-	//{
-	//	yield return fire = true;
-	//}
 
-	
-	private IEnumerator OnMoveLeft(InputValue value)
-	{
-		yield return goLeft = true;
+    private IEnumerator OnLeft(InputValue value)
+    {
+        yield return leftPress = true;
+    }
+
+
+    private IEnumerator OnMoveLeft(InputValue value)
+    {
+        yield return goLeft = true;
         yield return goRight = false;
+        rb.drag = 2;
+    }
 
-        if(Gamepad.current.leftTrigger.wasReleasedThisFrame)
-        {
-            yield return fire = true; 
-        }
-	}
 
-	
-	private IEnumerator OnMoveRight(InputValue value)
-	{
-		yield return goRight = true;
+    private IEnumerator OnMoveRight(InputValue value)
+    {
+        yield return goRight = true;
         yield return goLeft = false;
+        rb.drag = 2;
+    }
 
-        if (Gamepad.current.rightTrigger.wasReleasedThisFrame)
-        {
-            yield return fire = true;
-        }
+    private IEnumerator OnMoveRightRelease(InputValue value)
+    {
+        yield return fire = true;
+        rb.drag = 0;
+    }
+
+    private IEnumerator OnMoveLeftRelease(InputValue value)
+    {
+        yield return fire = true;
+        rb.drag = 0;
     }
 }

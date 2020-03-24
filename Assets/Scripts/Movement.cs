@@ -5,7 +5,14 @@ using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
-    public int force;
+    public GameObject RightTxt;
+    public GameObject LeftTxt;
+
+    public Rigidbody rb;
+
+    [SerializeField] public PowerBar powerBar;
+
+    public float force;
     public int maxForce;
 
     public bool goRight;
@@ -16,12 +23,12 @@ public class Movement : MonoBehaviour
     public bool rightPress;
     public bool fire;
 
-    public Rigidbody rb;
-
-
     // Start is called before the first frame update
     void Start()
     {
+        goRight = true;
+        powerBar.SetSize(0.0f);
+
         rb = GetComponent<Rigidbody>();
     }
 
@@ -68,19 +75,30 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-//Spinning to go right - EDIT: both ways now
+        //update power bar
+        powerBar.SetSize(force / 100);
 
-	if (upPress == true)
+        //right-left text
+        if (goRight == true)
+        {
+            RightTxt.SetActive(true);
+            LeftTxt.SetActive(false);
+        }
+        else
+        {
+            RightTxt.SetActive(false);
+            LeftTxt.SetActive(true);
+        }
+
+        //Spinning to go right - EDIT: both ways now
+
+    if (upPress == true)
 	{
 		if (rightPress == true)
 		{
 			if (downPress == true)
 			{
 				//resets speed if you spin the opposite direction
-				//if (goRight == false)
-				//{
-				//force = 0;
-				//}
 
 				upPress = false;
 				rightPress = false;
@@ -95,7 +113,7 @@ public class Movement : MonoBehaviour
 				force++;
 				force++;
 				force++;
-			}
+                }
 		}
 	}
 

@@ -1,34 +1,26 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
 	public Collider m_Collider;
-//	public MyPlayerControls controls;
-
-//    public void OnEnable()
-//    {
-//        if (controls == null)
-//        {
-//            controls = new MyPlayerControls();
-//            controls.gameplay.SetCallbacks(this);
-//        }
-//        controls.gameplay.Enable();
-//    }
-
-//    public void OnDisable()
-//    {
-//        controls.gameplay.Disable();
-//    }
+	public Text GhostText;
 
     private IEnumerator OnGhosting(InputValue value)
     {
+m_Collider.enabled = !m_Collider.enabled;
         if (m_Collider.enabled == true)
         {
-            m_Collider.enabled = !m_Collider.enabled;
-            yield return new WaitForSeconds(1);
-            m_Collider.enabled = !m_Collider.enabled;
+yield return GhostText.text = "";
+//            m_Collider.enabled = !m_Collider.enabled;
+//            yield return new WaitForSeconds(1);
+//            m_Collider.enabled = !m_Collider.enabled;
+        }
+        if (m_Collider.enabled == false)
+        {
+yield return GhostText.text = "Ghosting";
         }
     }
 

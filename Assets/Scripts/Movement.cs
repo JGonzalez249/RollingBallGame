@@ -28,7 +28,7 @@ public class Movement : MonoBehaviour
     public bool holdLeft;
     public bool holdRight;
 
-    private float force;
+    public float force;
 
     private int maxForce = 100;
 

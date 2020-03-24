@@ -5,6 +5,7 @@ using UnityEngine;
 public class PowerBar : MonoBehaviour
 {
     public Transform bar;
+
     // Start is called before the first frame update
     void Start()
     {

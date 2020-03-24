@@ -112,6 +112,7 @@ public class Movement : MonoBehaviour
             {
                 rb.AddForce(transform.right * Time.deltaTime * force * 20, ForceMode.Impulse);
                 force = 0;
+                fire = false;
             }
 
         }

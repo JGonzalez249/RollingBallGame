@@ -13,7 +13,9 @@ public class Movement : MonoBehaviour
     [SerializeField] public PowerBar powerBar;
 
     public float force;
+
     public int maxForce;
+    public int maxMultiplier; // amount of force gained per circle completion
 
     public bool goRight;
 
@@ -33,50 +35,13 @@ public class Movement : MonoBehaviour
     }
 
 
-	private IEnumerator OnUp(InputValue value)
-	{
-		yield return upPress = true;
-	}
-
-	private IEnumerator OnRight(InputValue value)
-	{
-		yield return rightPress = true;
-	}
-
-	private IEnumerator OnDown(InputValue value)
-	{
-		yield return downPress = true;
-	}
 	
-	
-	private IEnumerator OnLeft(InputValue value)
-	{
-		yield return leftPress = true;
-	}
-
-	private IEnumerator OnLaunch(InputValue value)
-	{
-		yield return fire = true;
-	}
-
-	
-	private IEnumerator OnLeftDpad(InputValue value)
-	{
-		yield return goRight = false;
-	}
-
-	
-	private IEnumerator OnRightDpad(InputValue value)
-	{
-		yield return goRight = true;
-	}
 
 
     // Update is called once per frame
     void Update()
     {
-        //update power bar
-        powerBar.SetSize(force / 100);
+        powerBar.SetSize(force / 100); //update power bar
 
         //right-left text
         if (goRight == true)
@@ -98,21 +63,17 @@ public class Movement : MonoBehaviour
 		{
 			if (downPress == true)
 			{
-				//resets speed if you spin the opposite direction
-
 				upPress = false;
 				rightPress = false;
 				leftPress = false;
 				downPress = false;
 
-				//goRight = true;
-				//StartCoroutine(Charge());
+                    if (force < maxForce) // don't go over max force
+                    {
+                        force += maxMultiplier;
+                        powerBar.SetSize(force / 100); //update power bar
+                    }
 
-				force++;
-				force++;
-				force++;
-				force++;
-				force++;
                 }
 		}
 	}
@@ -123,34 +84,26 @@ public class Movement : MonoBehaviour
 	{
 		if (leftPress == true)
 		{
-			if (downPress == true)
-			{
-				//resets speed if you spin the opposite direction
-				//if (goRight == true)
-				//{
-				//force = 0;
-				//}
+                if (downPress == true)
+                {
 
-				upPress = false;
-				leftPress = false;
-				rightPress = false;
-				downPress = false;
+                    upPress = false;
+                    leftPress = false;
+                    rightPress = false;
+                    downPress = false;
 
-				//goRight = false;
-				//StartCoroutine(Charge());
-
-				force++;
-				force++;
-				force++;
-				force++;
-				force++;
-			}
+                    if (force < maxForce) // don't go over max force
+                    {
+                        force += maxMultiplier;
+                        powerBar.SetSize(force / 100); //update power bar
+                    }
+                }
 		}
 	}
 
 
 
-//press space to launch stored energy
+//press fire button to launch stored energy
 
         if (fire == true)
         {
@@ -164,7 +117,7 @@ public class Movement : MonoBehaviour
                 rb.AddForce(transform.right * Time.deltaTime * force * -20, ForceMode.Impulse);
                 force = 0;
             }
-	fire = false;
+	        fire = false;
         }
 
         if (force > maxForce)
@@ -172,14 +125,41 @@ public class Movement : MonoBehaviour
             force = maxForce;
         }
     }
+    private IEnumerator OnUp(InputValue value)
+	{
+		yield return upPress = true;
+	}
 
-    IEnumerator Charge()
-    {
-        if (force < maxForce) // while force is less than max
-        {
-            yield return new WaitForSeconds(0.5f);
-            force++;
-        }
+	private IEnumerator OnRight(InputValue value)
+	{
+		yield return rightPress = true;
+	}
 
-    }
+	private IEnumerator OnDown(InputValue value)
+	{
+		yield return downPress = true;
+	}
+	
+	
+	private IEnumerator OnLeft(InputValue value)
+	{
+		yield return leftPress = true;
+	}
+
+	private IEnumerator OnLaunch(InputValue value) // fire button
+	{
+		yield return fire = true;
+	}
+
+	
+	private IEnumerator OnLeftDpad(InputValue value)
+	{
+		yield return goRight = false;
+	}
+
+	
+	private IEnumerator OnRightDpad(InputValue value)
+	{
+		yield return goRight = true;
+	}
 }

@@ -254,6 +254,17 @@
                 },
                 {
                     "name": "",
+                    "id": "611bf289-11ba-4574-beac-934d83c01c21",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveRightRelease",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "dbf4a85b-8192-4851-9d88-1c829d3fc3dd",
                     "path": "<Gamepad>/leftTrigger",
                     "interactions": "Press(behavior=1)",
@@ -265,8 +276,30 @@
                 },
                 {
                     "name": "",
+                    "id": "3b9f6bcf-a93a-44ce-8ef3-19dac77bec09",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveLeftRelease",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "654d8f3f-e278-4128-b6a6-a6412adee865",
                     "path": "<Gamepad>/buttonEast",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hook",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "20ceec04-8406-4865-ae30-9f6cf2eb4e05",
+                    "path": "<Keyboard>/space",
                     "interactions": "Press",
                     "processors": "",
                     "groups": "",

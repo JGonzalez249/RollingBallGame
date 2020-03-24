@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GrapplingHook : MonoBehaviour
 {
     public GameObject hook;
     public GameObject hookHolder;
+    public Rigidbody rb; // hook
+    public Rigidbody rb2; // hook holder
+    public SpringJoint sj;
 
     public float hookTravelSpeed;
     public float hookStrength;
@@ -21,55 +25,44 @@ public class GrapplingHook : MonoBehaviour
 
     public GameObject target;
 
-
-    private void Update()
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && fired == false)
-        {
-            fired = true;
-            shootDirX = 0;
-            if (Input.GetKey(KeyCode.E))
-            {
-                shootDirX++;
-            }
-            if (Input.GetKey(KeyCode.Q))
-            {
-                shootDirX--;
-            }
-        }
+        sj = GetComponent<SpringJoint>();
+        sj.connectedBody = rb2;
+    }
 
-        if (fired == true && hooked == false)
+    void Update()
+    {
+        if (fired == true && hooked == false) // firing
         {
             Fire();
 
-            if (currentDistance >= maxDistance)
+            if (currentDistance >= maxDistance) //don't go too far
             {
                 ReturnHook();
             }
         }
 
-        if (hooked == true)
+        if (fired == true && hooked == true) // hooked something
         {
-            //move toawards hook
-            hook.transform.parent = hookedObj.transform;
-            transform.position = Vector3.MoveTowards(transform.position, hook.transform.position, Time.deltaTime * hookStrength);
-            float distanceToHook = Vector3.Distance(transform.position, hook.transform.position);
-
-            //this.GetComponent<Rigidbody>().useGravity = false;
-
-            //player touches hookable object - let go of wall
-            if (distanceToHook < 1)
-            {
-                ReturnHook();
-            }
-            else
-            {
-                hook.transform.parent = hookedObj.transform;
-                //this.GetComponent<Rigidbody>().useGravity = true;
-            }
+            sj.connectedBody = rb;
         }
 
+        if (fired == false && hooked == false) // didn't hook anything
+        {
+            ReturnHook();
+        }
+    }
+
+    private IEnumerator OnHook(InputValue value) // east - right button
+    {
         if (fired == false && hooked == false)
+        {
+            yield return fired = true;
+            shootDirX = 0;
+        }
+
+        if (fired == true && hooked == true) // return if out
         {
             ReturnHook();
         }
@@ -77,7 +70,6 @@ public class GrapplingHook : MonoBehaviour
 
     void Fire()  //firing the hook
     {
-        //Debug.Log("Shot");
         Vector3 hookVel = new Vector3(2 * shootDirX, 2, 0);
         hook.transform.Translate(hookVel * Time.deltaTime * hookTravelSpeed);
         currentDistance = Vector3.Distance(transform.position, hook.transform.position);
@@ -85,10 +77,10 @@ public class GrapplingHook : MonoBehaviour
 
     void ReturnHook()
     {
-        //Debug.Log("Return");
         hook.transform.rotation = hookHolder.transform.rotation;
         hook.transform.position = hookHolder.transform.position;
         fired = false;
         hooked = false;
+        sj.connectedBody = rb2;
     }
 }

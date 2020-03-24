@@ -9,7 +9,7 @@
                     "name": "Ghosting",
                     "type": "Button",
                     "id": "390b1ac4-1541-4d20-8908-653c4ff77640",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 },
@@ -46,14 +46,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Launch",
-                    "type": "Button",
-                    "id": "44012ca5-d628-4e24-9964-c30052b81eec",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "MoveLeft",
                     "type": "Button",
                     "id": "6e975b1a-3438-4227-a325-ff4b8d463487",
@@ -81,6 +73,14 @@
                     "name": "MoveLeftRelease",
                     "type": "Button",
                     "id": "86c336c0-7b2c-40e2-9061-d2395f64af54",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Hook",
+                    "type": "Button",
+                    "id": "29081062-cb0a-47c6-b2d6-cf999a60523c",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
@@ -199,28 +199,6 @@
                 },
                 {
                     "name": "",
-                    "id": "18393347-fc4c-45d0-a4a8-736f0a8b53b6",
-                    "path": "<Keyboard>/space",
-                    "interactions": "Press",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Launch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "68a95bee-6b73-47a5-8fd8-4db4f07c7ec8",
-                    "path": "<Gamepad>/leftTrigger",
-                    "interactions": "Press",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Launch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "58bf9450-0174-451f-96ee-605dbb6bc995",
                     "path": "<Gamepad>/leftTrigger",
                     "interactions": "Press",
@@ -282,6 +260,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "MoveLeftRelease",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "654d8f3f-e278-4128-b6a6-a6412adee865",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hook",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -7,6 +7,7 @@ public class Movement : MonoBehaviour
 {
     public GameObject RightTxt;
     public GameObject LeftTxt;
+    public GameObject NoneTxt;
 
     public Rigidbody rb;
 
@@ -24,7 +25,8 @@ public class Movement : MonoBehaviour
     private bool rightPress;
     private bool fireRight;
     private bool fireLeft;
-    private bool hold;
+    public bool holdLeft;
+    public bool holdRight;
 
     private float force;
 
@@ -33,7 +35,8 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        goRight = true;
+        goRight = false;
+        goLeft = false;
         powerBar.SetSize(0.0f);
 
         rb = GetComponent<Rigidbody>();
@@ -49,23 +52,31 @@ public class Movement : MonoBehaviour
         powerBar.SetSize(force / 100); //update power bar
 
         //right-left text
-        if (goRight == true)
+        if (holdRight == true && holdLeft == false) // right text
         {
             RightTxt.SetActive(true);
             LeftTxt.SetActive(false);
+            NoneTxt.SetActive(false);
         }
-        else
+        if (holdLeft == true && holdRight == false) // left text
         {
             RightTxt.SetActive(false);
             LeftTxt.SetActive(true);
+            NoneTxt.SetActive(false);
+        }
+        if (holdLeft == false && holdRight == false || holdLeft == true && holdRight == true) // none text
+        {
+            RightTxt.SetActive(false);
+            LeftTxt.SetActive(false);
+            NoneTxt.SetActive(true);
         }
 
-        //Movement
-        if (hold == true) // holding trigger
+            //increase Charge
+            if (holdLeft == true && holdRight == false || holdRight == true && holdLeft == false) // holding either trigger alone
             {
             if (upPress == true)
             {
-                if (leftPress == true || rightPress == true)
+                if (leftPress == true || rightPress == true) // clockwise or counterclockwise
                 {
                     if (downPress == true)
                     {
@@ -86,7 +97,7 @@ public class Movement : MonoBehaviour
         }
 
         //press fire button to launch stored energy
-        if (goRight == true)
+        if (goRight == true && holdLeft == false)
         {
             if (fireRight == true)
             {
@@ -97,7 +108,7 @@ public class Movement : MonoBehaviour
             }
 
         }
-        if (goRight == false)
+        if (goLeft == true && holdRight == false)
         {
             if (fireLeft == true)
             {
@@ -114,58 +125,66 @@ public class Movement : MonoBehaviour
         {
             force = maxForce;
         }
-
     }
-    private IEnumerator OnUp(InputValue value)
+
+
+    private IEnumerator OnUp(InputValue value) // up
     {
         yield return upPress = true;
     }
 
-    private IEnumerator OnRight(InputValue value)
+    private IEnumerator OnRight(InputValue value) // right
     {
         yield return rightPress = true;
     }
 
-    private IEnumerator OnDown(InputValue value)
+    private IEnumerator OnDown(InputValue value) // down
     {
         yield return downPress = true;
     }
 
 
-    private IEnumerator OnLeft(InputValue value)
+    private IEnumerator OnLeft(InputValue value) // left
     {
         yield return leftPress = true;
     }
 
 
-    private IEnumerator OnMoveLeft(InputValue value)
+    private IEnumerator OnMoveLeft(InputValue value) // left trigger hold
     {
         yield return goLeft = true;
         yield return goRight = false;
-        yield return hold = true;
+        yield return holdLeft = true;
         rb.drag = 2;
     }
 
-
-    private IEnumerator OnMoveRight(InputValue value)
+    private IEnumerator OnMoveRight(InputValue value) // right trigger hold
     {
         yield return goRight = true;
         yield return goLeft = false;
-        yield return hold = true;
+        yield return holdRight = true;
         rb.drag = 2;
     }
 
-    private IEnumerator OnMoveRightRelease(InputValue value)
+    private IEnumerator OnMoveLeftRelease(InputValue value) // left trigger release
     {
-        yield return fireRight = true;
-        yield return hold = false;
-        rb.drag = 0;
+        yield return holdLeft = false;
+
+        if (goLeft == true)
+        {            
+            yield return fireLeft = true;
+            rb.drag = 0;
+        }
     }
 
-    private IEnumerator OnMoveLeftRelease(InputValue value)
+    private IEnumerator OnMoveRightRelease(InputValue value) // right trigger release
     {
-        yield return fireLeft = true;
-        yield return hold = false;
-        rb.drag = 0;
+        yield return holdRight = false;
+
+        if (goRight == true)
+        {
+            yield return fireRight = true;
+            rb.drag = 0;
+        }
     }
 }

@@ -6,10 +6,14 @@ public class HookDetector : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Hookable")
+        if (player.GetComponent<GrapplingHook>().fired == true)
         {
-            player.GetComponent<GrapplingHook>().hooked = true;
-            player.GetComponent<GrapplingHook>().hookedObj = other.gameObject;
+            if (other.tag == "Hookable")
+            {
+                player.GetComponent<GrapplingHook>().hooked = true;
+                player.GetComponent<GrapplingHook>().hookedObj = other.gameObject;
+            }
         }
+
     }
 }

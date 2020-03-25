@@ -9,7 +9,6 @@ public class GrapplingHook : MonoBehaviour
     public Rigidbody rb; // hook
     public Rigidbody rb2; // hook holder
     public SpringJoint sj;
-    public Collider h_Collider;
 
     public float hookTravelSpeed;
     public float hookStrength;
@@ -70,7 +69,6 @@ public class GrapplingHook : MonoBehaviour
 
     private void Fire()  //firing the hook
     {
-        h_Collider.enabled = true;
         Vector3 hookVel = new Vector3(2 * shootDirX, 2, 0);
         hook.transform.Translate(hookVel * Time.deltaTime * hookTravelSpeed);
         currentDistance = Vector3.Distance(transform.position, hook.transform.position);
@@ -78,7 +76,6 @@ public class GrapplingHook : MonoBehaviour
 
     private void ReturnHook()
     {
-        h_Collider.enabled = false;
         hook.transform.rotation = hookHolder.transform.rotation;
         hook.transform.position = hookHolder.transform.position;
         fired = false;

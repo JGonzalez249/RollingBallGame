@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -33,7 +32,7 @@ public class Movement : MonoBehaviour
     private int maxForce = 100;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         goRight = false;
         goLeft = false;
@@ -42,12 +41,8 @@ public class Movement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-
-
-
-
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         powerBar.SetSize(force / 100); //update power bar
 
@@ -71,16 +66,15 @@ public class Movement : MonoBehaviour
             NoneTxt.SetActive(true);
         }
 
-            //increase Charge
-            if (holdLeft == true && holdRight == false || holdRight == true && holdLeft == false) // holding either trigger alone
-            {
+        //increase Charge
+        if (holdLeft == true && holdRight == false || holdRight == true && holdLeft == false) // holding either trigger alone
+        {
             if (upPress == true)
             {
                 if (leftPress == true || rightPress == true) // clockwise or counterclockwise
                 {
                     if (downPress == true)
                     {
-
                         upPress = false;
                         leftPress = false;
                         rightPress = false;
@@ -106,7 +100,6 @@ public class Movement : MonoBehaviour
                 fireRight = false;
                 fireLeft = false; // dont fire left
             }
-
         }
         if (goLeft == true && holdRight == false)
         {
@@ -117,7 +110,6 @@ public class Movement : MonoBehaviour
                 fireLeft = false;
                 fireRight = false; // don't fire right
             }
-
         }
 
         //logic and corrections
@@ -126,7 +118,6 @@ public class Movement : MonoBehaviour
             force = maxForce;
         }
     }
-
 
     private IEnumerator OnUp(InputValue value) // up
     {
@@ -143,12 +134,10 @@ public class Movement : MonoBehaviour
         yield return downPress = true;
     }
 
-
     private IEnumerator OnLeft(InputValue value) // left
     {
         yield return leftPress = true;
     }
-
 
     private IEnumerator OnMoveLeft(InputValue value) // left trigger hold
     {
@@ -171,7 +160,7 @@ public class Movement : MonoBehaviour
         yield return holdLeft = false;
 
         if (goLeft == true)
-        {            
+        {
             yield return fireLeft = true;
             rb.drag = 0;
         }

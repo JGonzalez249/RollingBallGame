@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class HookDetector : MonoBehaviour
 {
@@ -14,7 +12,4 @@ public class HookDetector : MonoBehaviour
             player.GetComponent<GrapplingHook>().hookedObj = other.gameObject;
         }
     }
-
-
-
 }

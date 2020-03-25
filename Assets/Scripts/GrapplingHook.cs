@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -31,7 +30,7 @@ public class GrapplingHook : MonoBehaviour
         sj.connectedBody = rb2;
     }
 
-    void Update()
+    private void Update()
     {
         if (fired == true && hooked == false) // firing
         {
@@ -68,14 +67,14 @@ public class GrapplingHook : MonoBehaviour
         }
     }
 
-    void Fire()  //firing the hook
+    private void Fire()  //firing the hook
     {
         Vector3 hookVel = new Vector3(2 * shootDirX, 2, 0);
         hook.transform.Translate(hookVel * Time.deltaTime * hookTravelSpeed);
         currentDistance = Vector3.Distance(transform.position, hook.transform.position);
     }
 
-    void ReturnHook()
+    private void ReturnHook()
     {
         hook.transform.rotation = hookHolder.transform.rotation;
         hook.transform.position = hookHolder.transform.position;

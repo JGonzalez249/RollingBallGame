@@ -5,13 +5,12 @@ using UnityEngine.UI;
 
 public class Ghosting : MonoBehaviour
 {
-	public Collider m_Collider;
-	public Text GhostText;
+    public Collider m_Collider;
+    public Text GhostText;
 
     public bool usingGhosting;
 
-
-    void Update()
+    private void Update()
     {
         if (usingGhosting == true)
         {

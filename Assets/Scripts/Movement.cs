@@ -155,7 +155,7 @@ public class Movement : MonoBehaviour
         yield return goLeft = true;
         yield return goRight = false;
         yield return holdLeft = true;
-        rb.drag = 2;
+        rb.drag = 1;
     }
 
     private IEnumerator OnMoveRight(InputValue value) // right trigger hold
@@ -163,7 +163,7 @@ public class Movement : MonoBehaviour
         yield return goRight = true;
         yield return goLeft = false;
         yield return holdRight = true;
-        rb.drag = 2;
+        rb.drag = 1;
     }
 
     private IEnumerator OnMoveLeftRelease(InputValue value) // left trigger release

@@ -3012,8 +3012,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: '*Hold ''RightTrigger''/''LeftTrigger''(''RightArrow''/''LeftArrow'') to
-    stop and charge in a direction, then circle joystick (''W''''A''''S''''D'') to
-    gain momentum.  Release the trigger (arrow key) to move in that direction.
+    slow down and charge in a direction, then circle joystick (''W''''A''''S''''D'')
+    to gain momentum.  Release the trigger (arrow key) to move in that direction.
 
     *Press the Right Face button (''Spacebar'') to shoot a grapple hook - only sticks
     to grappleable (red) objects. Press it again to detach.
@@ -3087,10 +3087,10 @@ MonoBehaviour:
   m_margin: {x: -610.6006, y: 0, z: -629.6379, w: -170.79366}
   m_textInfo:
     textComponent: {fileID: 728498724}
-    characterCount: 421
+    characterCount: 426
     spriteCount: 0
-    spaceCount: 61
-    wordCount: 67
+    spaceCount: 62
+    wordCount: 68
     linkCount: 0
     lineCount: 5
     pageCount: 1

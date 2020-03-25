@@ -237,7 +237,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0.1875, z: 0.03125, w: -0.0390625}
+  m_BoundingSphereOverride: {x: 0.046875, y: 0.13671875, z: 0.0390625, w: -0.0390625}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -3012,7 +3012,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: '*Hold ''RightTrigger''/''LeftTrigger''(''RightArrow''/''LeftArrow'') to
-    slow down and charge in a direction, then circle joystick (''W''''A''''S''''D'')
+    slow down and charge in a direction, then circle Left Joystick (''W''''A''''S''''D'')
     to gain momentum.  Release the trigger (arrow key) to move in that direction.
 
     *Press the Right Face button (''Spacebar'') to shoot a grapple hook - only sticks
@@ -3020,7 +3020,7 @@ MonoBehaviour:
 
     *Press Right bumper (''G'') to toggle ghosting (ability to go through things).
 
-    *Press ''Escape'' to exit.'
+    *Press ''Start'' (''Escape'') to exit.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3089,10 +3089,10 @@ MonoBehaviour:
   m_margin: {x: -610.6006, y: 0, z: -629.6379, w: -170.79366}
   m_textInfo:
     textComponent: {fileID: 728498724}
-    characterCount: 452
+    characterCount: 467
     spriteCount: 0
-    spaceCount: 66
-    wordCount: 72
+    spaceCount: 68
+    wordCount: 74
     linkCount: 0
     lineCount: 6
     pageCount: 1
@@ -3419,7 +3419,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 9e-44}
+  m_BoundingSphereOverride: {x: 7.2000003, y: 5.6, z: -8, w: 4.8}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -3607,7 +3607,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 8.8, y: 4.8, z: -12.000001, w: 4}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -4822,7 +4822,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 4.5904e-41, y: 0, z: 0, w: 0.001331402}
+  m_BoundingSphereOverride: {x: NaN, y: NaN, z: 1.5365209e+16, w: 4.0935636e-34}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -5612,7 +5612,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 1.1e-44, z: 4.805e-42, w: 1.05e-43}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -6714,7 +6714,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.32e-43, y: 3.7108577e-10, z: 4.5904e-41, w: NaN}
+  m_BoundingSphereOverride: {x: NaN, y: NaN, z: NaN, w: NaN}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0

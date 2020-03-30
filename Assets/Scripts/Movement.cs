@@ -47,7 +47,7 @@ public class Movement : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void Update()
+    private void FixedUpdate()
     {
         mesh.transform.Rotate(0, 0, spin * spinForce); // spin
         if (spinForce > 0 && holdRight == false && holdLeft == false)

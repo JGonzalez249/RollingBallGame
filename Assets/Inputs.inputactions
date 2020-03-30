@@ -86,7 +86,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Quit",
+                    "name": "Pause",
                     "type": "Button",
                     "id": "325c4b2b-c4e5-4805-bef0-02dd7acd8270",
                     "expectedControlType": "",
@@ -322,7 +322,7 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": "",
-                    "action": "Quit",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -330,10 +330,10 @@
                     "name": "",
                     "id": "e93043d9-cc11-4478-8af8-025158c76e19",
                     "path": "<Keyboard>/escape",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
-                    "action": "Quit",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

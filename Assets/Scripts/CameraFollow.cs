@@ -12,7 +12,7 @@ public class CameraFollow : MonoBehaviour
     public bool lookRight;
     public bool lookLeft;
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         this.transform.position = new Vector3(target.transform.position.x, target.transform.position.y + 5, this.transform.position.z);
 
@@ -32,8 +32,6 @@ public class CameraFollow : MonoBehaviour
                 yield return rotation--;
             }
         }
-
-  
     }
 
     private IEnumerator OnMoveRight(InputValue value) // right trigger hold
@@ -50,21 +48,5 @@ public class CameraFollow : MonoBehaviour
                 yield return rotation++;
             }
         }
-
-
     }
-
-/*    private IEnumerator OnMoveLeftRelease(InputValue value) // left trigger release
-    {
-        yield return MaxRotation = 0;
-        lookRight = false;
-        lookLeft = false;
-    }
-
-    private IEnumerator OnMoveRightRelease(InputValue value) // right trigger release
-    {
-        yield return maxRotation = 0;
-        lookRight = false;
-        lookLeft = false;
-    }*/
 }

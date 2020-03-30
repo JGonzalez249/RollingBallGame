@@ -11,7 +11,7 @@ public class GrappleRender : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lineRenderer.numPositions = points.Length;
+        lineRenderer.positionCount = points.Length;
     }
 
     // Update is called once per frame

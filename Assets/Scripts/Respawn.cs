@@ -31,7 +31,10 @@ public class Respawn : MonoBehaviour
         GameObject.Find("Player").GetComponent<Ghosting>().usingGhosting = false; // turn off ghosting
         GameObject.Find("Player").GetComponent<Movement>().force = 0f; // reset force
         GameObject.Find("Player").GetComponent<Movement>().rb.velocity = new Vector3(0, 0, 0);// stop
+        GameObject.Find("Player").GetComponent<GrapplingHook>().ReturnHook(); // return hook
+        GameObject.Find("Player").GetComponent<Movement>().spinForce = 0; // stop spinning
         yield return new WaitForSeconds(0.5f);
         RespawnTxt.SetActive(false);
+
     }
 }

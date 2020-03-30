@@ -4,9 +4,11 @@ using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
-    public GameObject RightTxt;
-    public GameObject LeftTxt;
-    public GameObject NoneTxt;
+    public GameObject rightTxt;
+    public GameObject leftTxt;
+    public GameObject noneTxt;
+
+    public Transform mesh;
 
     public Rigidbody rb;
 
@@ -14,6 +16,8 @@ public class Movement : MonoBehaviour
 
     public int BarMultiplier; // variable multiplier bar increase
     public int speedMultiplier; // variable multiplies the speed
+
+    private float spin;
 
     public bool goRight;
     public bool goLeft;
@@ -28,6 +32,7 @@ public class Movement : MonoBehaviour
     public bool holdRight;
 
     public float force;
+    public float spinForce;
 
     private int maxForce = 100;
 
@@ -44,26 +49,33 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        mesh.transform.Rotate(0, 0, spin * spinForce); // spin
+        if (spinForce > 0 && holdRight == false && holdLeft == false)
+        {
+            spinForce -= 0.1f; // slow spin down
+        }
+
+
         powerBar.SetSize(force / 100); //update power bar
 
         //right-left text
         if (holdRight == true && holdLeft == false) // right text
         {
-            RightTxt.SetActive(true);
-            LeftTxt.SetActive(false);
-            NoneTxt.SetActive(false);
+            rightTxt.SetActive(true);
+            leftTxt.SetActive(false);
+            noneTxt.SetActive(false);
         }
         if (holdLeft == true && holdRight == false) // left text
         {
-            RightTxt.SetActive(false);
-            LeftTxt.SetActive(true);
-            NoneTxt.SetActive(false);
+            rightTxt.SetActive(false);
+            leftTxt.SetActive(true);
+            noneTxt.SetActive(false);
         }
         if (holdLeft == false && holdRight == false || holdLeft == true && holdRight == true) // none text
         {
-            RightTxt.SetActive(false);
-            LeftTxt.SetActive(false);
-            NoneTxt.SetActive(true);
+            rightTxt.SetActive(false);
+            leftTxt.SetActive(false);
+            noneTxt.SetActive(true);
         }
 
         //increase Charge
@@ -84,6 +96,7 @@ public class Movement : MonoBehaviour
                         {
                             force += BarMultiplier;
                             powerBar.SetSize(force / 100); //update power bar
+                            spinForce = force/2;
                         }
                     }
                 }
@@ -144,6 +157,8 @@ public class Movement : MonoBehaviour
         yield return goLeft = true;
         yield return goRight = false;
         yield return holdLeft = true;
+        spin = -1;
+        spinForce /= 4;
         rb.drag = 1;
     }
 
@@ -152,6 +167,8 @@ public class Movement : MonoBehaviour
         yield return goRight = true;
         yield return goLeft = false;
         yield return holdRight = true;
+        spin = 1;
+        spinForce /= 4;
         rb.drag = 1;
     }
 

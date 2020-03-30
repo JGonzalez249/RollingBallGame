@@ -74,7 +74,7 @@ public class GrapplingHook : MonoBehaviour
         currentDistance = Vector3.Distance(transform.position, hook.transform.position);
     }
 
-    private void ReturnHook()
+    public void ReturnHook()
     {
         hook.transform.rotation = hookHolder.transform.rotation;
         hook.transform.position = hookHolder.transform.position;

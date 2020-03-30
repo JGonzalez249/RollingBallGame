@@ -47,88 +47,91 @@ public class Movement : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void FixedUpdate()
+    private void Update()
     {
-        mesh.transform.Rotate(0, 0, spin * spinForce); // spin
-        if (spinForce > 0 && holdRight == false && holdLeft == false)
+        if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
         {
-            spinForce -= 0.1f; // slow spin down
-        }
-
-
-        powerBar.SetSize(force / 100); //update power bar
-
-        //right-left text
-        if (holdRight == true && holdLeft == false) // right text
-        {
-            rightTxt.SetActive(true);
-            leftTxt.SetActive(false);
-            noneTxt.SetActive(false);
-        }
-        if (holdLeft == true && holdRight == false) // left text
-        {
-            rightTxt.SetActive(false);
-            leftTxt.SetActive(true);
-            noneTxt.SetActive(false);
-        }
-        if (holdLeft == false && holdRight == false || holdLeft == true && holdRight == true) // none text
-        {
-            rightTxt.SetActive(false);
-            leftTxt.SetActive(false);
-            noneTxt.SetActive(true);
-        }
-
-        //increase Charge
-        if (holdLeft == true && holdRight == false || holdRight == true && holdLeft == false) // holding either trigger alone
-        {
-            if (upPress == true)
+            mesh.transform.Rotate(0, 0, spin * spinForce); // spin
+            if (spinForce > 0 && holdRight == false && holdLeft == false)
             {
-                if (leftPress == true || rightPress == true) // clockwise or counterclockwise
-                {
-                    if (downPress == true)
-                    {
-                        upPress = false;
-                        leftPress = false;
-                        rightPress = false;
-                        downPress = false;
+                spinForce -= 0.1f; // slow spin down
+            }
 
-                        if (force < maxForce) // don't go over max force
+
+            powerBar.SetSize(force / 100); //update power bar
+
+            //right-left text
+            if (holdRight == true && holdLeft == false) // right text
+            {
+                rightTxt.SetActive(true);
+                leftTxt.SetActive(false);
+                noneTxt.SetActive(false);
+            }
+            if (holdLeft == true && holdRight == false) // left text
+            {
+                rightTxt.SetActive(false);
+                leftTxt.SetActive(true);
+                noneTxt.SetActive(false);
+            }
+            if (holdLeft == false && holdRight == false || holdLeft == true && holdRight == true) // none text
+            {
+                rightTxt.SetActive(false);
+                leftTxt.SetActive(false);
+                noneTxt.SetActive(true);
+            }
+
+            //increase Charge
+            if (holdLeft == true && holdRight == false || holdRight == true && holdLeft == false) // holding either trigger alone
+            {
+                if (upPress == true)
+                {
+                    if (leftPress == true || rightPress == true) // clockwise or counterclockwise
+                    {
+                        if (downPress == true)
                         {
-                            force += BarMultiplier;
-                            powerBar.SetSize(force / 100); //update power bar
-                            spinForce = force/2;
+                            upPress = false;
+                            leftPress = false;
+                            rightPress = false;
+                            downPress = false;
+
+                            if (force < maxForce) // don't go over max force
+                            {
+                                force += BarMultiplier;
+                                powerBar.SetSize(force / 100); //update power bar
+                                spinForce = force / 2;
+                            }
                         }
                     }
                 }
             }
-        }
 
-        //press fire button to launch stored energy
-        if (goRight == true && holdLeft == false)
-        {
-            if (fireRight == true)
+            //press fire button to launch stored energy
+            if (goRight == true && holdLeft == false)
             {
-                rb.AddForce(transform.right * Time.deltaTime * force * speedMultiplier, ForceMode.Impulse);
-                force = 0;
-                fireRight = false;
-                fireLeft = false; // dont fire left
+                if (fireRight == true)
+                {
+                    rb.AddForce(transform.right * Time.deltaTime * force * speedMultiplier, ForceMode.Impulse);
+                    force = 0;
+                    fireRight = false;
+                    fireLeft = false; // dont fire left
+                }
             }
-        }
-        if (goLeft == true && holdRight == false)
-        {
-            if (fireLeft == true)
+            if (goLeft == true && holdRight == false)
             {
-                rb.AddForce(transform.right * Time.deltaTime * force * -speedMultiplier, ForceMode.Impulse);
-                force = 0;
-                fireLeft = false;
-                fireRight = false; // don't fire right
+                if (fireLeft == true)
+                {
+                    rb.AddForce(transform.right * Time.deltaTime * force * -speedMultiplier, ForceMode.Impulse);
+                    force = 0;
+                    fireLeft = false;
+                    fireRight = false; // don't fire right
+                }
             }
-        }
 
-        //logic and corrections
-        if (force > maxForce) // don't go above max force
-        {
-            force = maxForce;
+            //logic and corrections
+            if (force > maxForce) // don't go above max force
+            {
+                force = maxForce;
+            }
         }
     }
 

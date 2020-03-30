@@ -13,7 +13,13 @@ public class GrapplingHook : MonoBehaviour
     public float hookTravelSpeed;
     public float hookStrength;
 
-    private int shootDirX;
+    public int shootDirX;
+    public int shootDirY;
+
+    public bool aimRight;
+    public bool aimLeft;
+    public bool aimUp;
+    public bool aimDown;
 
     public bool fired;
     public bool hooked;
@@ -59,6 +65,27 @@ public class GrapplingHook : MonoBehaviour
         {
             yield return fired = true;
             shootDirX = 0;
+            shootDirY = 1;
+            if (aimRight == true)
+            {
+                shootDirX++;
+                shootDirY = 1;
+            }
+            if (aimLeft == true)
+            {
+                shootDirX--;
+                shootDirY = 1;
+            }
+            if (aimUp == true)
+            {
+                shootDirY = 1;
+                shootDirX = 0;
+            }
+            if (aimDown == true)
+            {
+                shootDirY = -1;
+                shootDirX = 0;
+            }
         }
 
         if (fired == true && hooked == true) // return if out
@@ -67,9 +94,10 @@ public class GrapplingHook : MonoBehaviour
         }
     }
 
-    private void Fire()  //firing the hook
+
+        private void Fire()  //firing the hook
     {
-        Vector3 hookVel = new Vector3(2 * shootDirX, 2, 0);
+        Vector3 hookVel = new Vector3(2 * shootDirX, 2 * shootDirY, 0);
         hook.transform.Translate(hookVel * Time.deltaTime * hookTravelSpeed);
         currentDistance = Vector3.Distance(transform.position, hook.transform.position);
     }

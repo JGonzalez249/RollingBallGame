@@ -14,9 +14,12 @@ public class CameraFollow : MonoBehaviour
 
     private void FixedUpdate()
     {
-        this.transform.position = new Vector3(target.transform.position.x, target.transform.position.y + 5, this.transform.position.z);
+        if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
+        {
+            this.transform.position = new Vector3(target.transform.position.x, target.transform.position.y + 5, this.transform.position.z);
 
-        transform.rotation = Quaternion.Euler(0, rotation, 0);
+            transform.rotation = Quaternion.Euler(0, rotation, 0);
+        }
     }
 
     private IEnumerator OnMoveLeft(InputValue value) // left trigger hold

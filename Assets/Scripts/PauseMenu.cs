@@ -17,31 +17,22 @@ public class PauseMenu : MonoBehaviour
 
     private void Update()
     {
-        if (gameIsPaused == true) // unpause
+        if (Gamepad.current.startButton.wasPressedThisFrame)
         {
-            pauseMenuUI.SetActive(false);
-            Time.timeScale = 1f;
-        }
-        if (gameIsPaused == false) // pause
-        {
-            pauseMenuUI.SetActive(true);
-            Time.timeScale = 0f;
-        }
-    }
-
-    private IEnumerator OnPause(InputValue value)
-    {
-        if (gameIsPaused == true) // unpause
-        {
-            yield return gameIsPaused = false;
-            Debug.Log("unpause");
-            yield return new WaitForSeconds(1f);
-        }
-        if (gameIsPaused == false) // pause
-        {
-            yield return gameIsPaused = true;
-            Debug.Log("pause");
-            yield return new WaitForSeconds(1f);
+                if (gameIsPaused == true) // unpause
+            {
+                pauseMenuUI.SetActive(false);
+                Time.timeScale = 1f;
+                gameIsPaused = false;
+                Debug.Log("unpause");
+            }
+            else if (gameIsPaused == false) // pause
+            {
+                pauseMenuUI.SetActive(true);
+                Time.timeScale = 0f;
+                gameIsPaused = true;
+                Debug.Log("pause");
+            }
         }
     }
 }

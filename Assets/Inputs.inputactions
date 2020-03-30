@@ -86,10 +86,50 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Pause",
+                    "name": "UnPause",
                     "type": "Button",
                     "id": "325c4b2b-c4e5-4805-bef0-02dd7acd8270",
                     "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "de4483fc-1374-44b4-95f7-d35c3a9c262a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "AimUp",
+                    "type": "Button",
+                    "id": "06802b92-0c05-4173-823a-5232d33ea41d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "AimRight",
+                    "type": "Button",
+                    "id": "f0437368-690c-44da-82be-1cd6273772cc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "AimDown",
+                    "type": "Button",
+                    "id": "42f8f28b-7af4-4d84-b9de-c5ab03b2827f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "AimLeft",
+                    "type": "Button",
+                    "id": "544000e0-c387-461c-a56d-e8e936c99bc6",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 }
@@ -334,6 +374,72 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4b50afd6-b1de-40df-a42e-92a6920ff224",
+                    "path": "<Gamepad>/rightStick/up",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AimUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "beed3bbe-9ea0-4823-bf40-f4a9406b3904",
+                    "path": "<Gamepad>/rightStick/right",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AimRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bd134377-fb70-4709-b645-2eaf0bbc9eb0",
+                    "path": "<Gamepad>/rightStick/down",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AimDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7c2646ff-fe8a-4b39-bf95-04e8155fe97e",
+                    "path": "<Gamepad>/rightStick/left",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AimLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fec6141b-d539-48d1-aee9-31a7948ade4d",
+                    "path": "<Gamepad>/start",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UnPause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8a7fb3d6-56f3-4801-98f0-f8309a99d7d7",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UnPause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

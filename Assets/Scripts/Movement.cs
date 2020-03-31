@@ -19,11 +19,12 @@ public class Movement : MonoBehaviour
     public int maxSpeed;
 
     private float spin;
-    public float slow;
+    private float slow;
 
-    public bool goRight;
-    public bool goLeft;
-
+    private bool holdLeft;
+    private bool holdRight;
+    private bool goRight;
+    private bool goLeft;
     private bool upPress;
     private bool downPress;
     private bool leftPress;
@@ -31,8 +32,6 @@ public class Movement : MonoBehaviour
     private bool fireRight;
     private bool fireLeft;
 
-    public bool holdLeft;
-    public bool holdRight;
 
     public float force;
     public float spinForce;
@@ -52,37 +51,38 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        //slow down over time
-        rb.velocity = new Vector3(rb.velocity.x * slow, rb.velocity.y);
-        
-        //too fast right
-        if (rb.velocity.x >= maxSpeed)
-        {
-            rb.velocity = new Vector3(maxSpeed, rb.velocity.y);
-        }
-        //too fast left
-        if (rb.velocity.x <= -maxSpeed)
-        {
-            rb.velocity = new Vector3(-maxSpeed, rb.velocity.y);
-        }
-        //too fast up
-        if (rb.velocity.y >= maxSpeed)
-        {
-            rb.velocity = new Vector3(rb.velocity.x, maxSpeed);
-        }
-        //too fast down
-        if (rb.velocity.y <= -maxSpeed)
-        {
-            rb.velocity = new Vector3(rb.velocity.x, -maxSpeed);
-        }
-        //too fast spin
-        if(spinForce >= maxSpeed)
-        {
-            spinForce = maxSpeed;
-        }
-
         if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
         {
+            //slow down over time
+            rb.velocity = new Vector3(rb.velocity.x * slow, rb.velocity.y);
+
+            //too fast right
+            if (rb.velocity.x >= maxSpeed)
+            {
+                rb.velocity = new Vector3(maxSpeed, rb.velocity.y);
+            }
+            //too fast left
+            if (rb.velocity.x <= -maxSpeed)
+            {
+                rb.velocity = new Vector3(-maxSpeed, rb.velocity.y);
+            }
+            //too fast up
+            if (rb.velocity.y >= maxSpeed)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, maxSpeed);
+            }
+            //too fast down
+            if (rb.velocity.y <= -maxSpeed)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, -maxSpeed);
+            }
+            //too fast spin
+            if (spinForce >= maxSpeed)
+            {
+                spinForce = maxSpeed;
+            }
+
+
             mesh.transform.Rotate(0, 0, spin * spinForce); // spin
             if (spinForce > 0 && holdRight == false && holdLeft == false)
             {
@@ -169,77 +169,100 @@ public class Movement : MonoBehaviour
 
     private IEnumerator OnUp(InputValue value) // up
     {
-        yield return upPress = true;
+        if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
+        {
+            yield return upPress = true;
+        }
     }
 
     private IEnumerator OnRight(InputValue value) // right
     {
-        yield return rightPress = true;
+        if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
+        {
+            yield return rightPress = true;
+        }
     }
 
     private IEnumerator OnDown(InputValue value) // down
     {
-        yield return downPress = true;
+        if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
+        {
+            yield return downPress = true;
+        }
     }
 
     private IEnumerator OnLeft(InputValue value) // left
     {
-        yield return leftPress = true;
+        if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
+        {
+            yield return leftPress = true;
+        }
     }
 
     private IEnumerator OnMoveLeft(InputValue value) // left trigger hold
     {
-        if (goLeft == false) // if previously going right
+        if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
         {
-            spin = -1;
-            spinForce /= 4;
-            if (GameObject.Find("Player").GetComponent<GrapplingHook>().hooked == false) // not hooked
+            if (goLeft == false) // if previously going right
             {
-                slow = 0.97f;
+                spin = -1;
+                spinForce /= 4;
+                if (GameObject.Find("Player").GetComponent<GrapplingHook>().hooked == false) // not hooked
+                {
+                    slow = 0.97f;
+                }
             }
+            yield return goLeft = true;
+            yield return goRight = false;
+            yield return holdLeft = true;
         }
-        yield return goLeft = true;
-        yield return goRight = false;
-        yield return holdLeft = true;
     }
 
     private IEnumerator OnMoveRight(InputValue value) // right trigger hold
     {
-        if (goRight == false) // if previously going left
+        if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
         {
-            spin = 1;
-            spinForce /= 4;
-            if (GameObject.Find("Player").GetComponent<GrapplingHook>().hooked == false) // not hooked
+            if (goRight == false) // if previously going left
             {
-                slow = 0.97f;
-            }
+                spin = 1;
+                spinForce /= 4;
+                if (GameObject.Find("Player").GetComponent<GrapplingHook>().hooked == false) // not hooked
+                {
+                    slow = 0.97f;
+                }
 
+            }
+            yield return goRight = true;
+            yield return goLeft = false;
+            yield return holdRight = true;
         }
-        yield return goRight = true;
-        yield return goLeft = false;
-        yield return holdRight = true;
-        
     }
 
     private IEnumerator OnMoveLeftRelease(InputValue value) // left trigger release
     {
-        yield return holdLeft = false;
-
-        if (goLeft == true)
+        if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
         {
-            yield return fireLeft = true;
-            slow = 1f; // no slowdown
+            yield return holdLeft = false;
+
+            if (goLeft == true)
+            {
+                yield return fireLeft = true;
+                slow = 1f; // no slowdown
+            }
         }
     }
 
     private IEnumerator OnMoveRightRelease(InputValue value) // right trigger release
     {
-        yield return holdRight = false;
-
-        if (goRight == true)
+        if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
         {
-            yield return fireRight = true;
-            slow = 1f; // no slowdown
+            yield return holdRight = false;
+
+            if (goRight == true)
+            {
+                yield return fireRight = true;
+                slow = 1f; // no slowdown
+            }
         }
     }
 }

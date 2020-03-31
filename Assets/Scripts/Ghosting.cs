@@ -27,6 +27,9 @@ public class Ghosting : MonoBehaviour
 
     private IEnumerator OnGhosting(InputValue value) // press ghosting
     {
-        yield return usingGhosting = !usingGhosting;
+        if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
+        {
+            yield return usingGhosting = !usingGhosting;
+        }
     }
 }

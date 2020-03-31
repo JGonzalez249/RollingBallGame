@@ -38,59 +38,62 @@ public class GrapplingHook : MonoBehaviour
 
     private void Update()
     {
-        if (fired == true && hooked == false) // firing
-        {
-            Fire();
+            if (fired == true && hooked == false) // firing
+            {
+                Fire();
 
-            if (currentDistance >= maxDistance) //don't go too far
+                if (currentDistance >= maxDistance) //don't go too far
+                {
+                    ReturnHook();
+                }
+            }
+
+            if (fired == true && hooked == true) // hooked something
+            {
+                sj.connectedBody = rb;
+            }
+
+            if (fired == false && hooked == false) // didn't hook anything
             {
                 ReturnHook();
             }
-        }
-
-        if (fired == true && hooked == true) // hooked something
-        {
-            sj.connectedBody = rb;
-        }
-
-        if (fired == false && hooked == false) // didn't hook anything
-        {
-            ReturnHook();
-        }
     }
 
     private IEnumerator OnHook(InputValue value) // east - right button
     {
-        if (fired == false && hooked == false)
+        if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
         {
-            yield return fired = true;
-            shootDirX = 0;
-            shootDirY = 1;
-            if (aimRight == true)
+            if (fired == false && hooked == false)
             {
-                shootDirX++;
-                shootDirY = 1;
-            }
-            if (aimLeft == true)
-            {
-                shootDirX--;
-                shootDirY = 1;
-            }
-            if (aimUp == true)
-            {
-                shootDirY = 1;
+                yield return fired = true;
                 shootDirX = 0;
+                shootDirY = 1;
+                if (aimRight == true)
+                {
+                    shootDirX = 1;
+                    shootDirY = 1;
+                }
+                if (aimLeft == true)
+                {
+                    shootDirX = -1;
+                    shootDirY = 1;
+                }
+                if (aimUp == true)
+                {
+                    shootDirY = 1;
+                    shootDirX = 0;
+                }
+                if (aimDown == true)
+                {
+                    shootDirY = -1;
+                    shootDirX = 0;
+                }
             }
-            if (aimDown == true)
-            {
-                shootDirY = -1;
-                shootDirX = 0;
-            }
-        }
 
-        if (fired == true && hooked == true) // return if out
-        {
-            ReturnHook();
+            if (fired == true && hooked == true) // return if out
+            {
+                ReturnHook();
+            }
         }
     }
 

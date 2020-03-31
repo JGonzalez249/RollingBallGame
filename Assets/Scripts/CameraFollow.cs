@@ -12,7 +12,7 @@ public class CameraFollow : MonoBehaviour
     public bool lookRight;
     public bool lookLeft;
 
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
         {
@@ -24,31 +24,37 @@ public class CameraFollow : MonoBehaviour
 
     private IEnumerator OnMoveLeft(InputValue value) // left trigger hold
     {
-        yield return lookRight = false;
-        yield return lookLeft = true;
-        yield return maxRotation = -10;
-        yield return maxOffset = -10;
-        if (lookRight == false && lookLeft == true)
+        if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
         {
-            while (rotation > maxRotation)
+            yield return lookRight = false;
+            yield return lookLeft = true;
+            yield return maxRotation = -10;
+            yield return maxOffset = -10;
+            if (lookRight == false && lookLeft == true)
             {
-                yield return rotation--;
+                while (rotation > maxRotation)
+                {
+                    yield return rotation--;
+                }
             }
         }
     }
 
     private IEnumerator OnMoveRight(InputValue value) // right trigger hold
     {
-        yield return lookRight = true;
-        yield return lookLeft = false;
-        yield return maxRotation = 10;
-        yield return maxOffset = 10;
-        
-        if (lookRight == true && lookLeft == false)
+        if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
         {
-            while (rotation < maxRotation)
+            yield return lookRight = true;
+            yield return lookLeft = false;
+            yield return maxRotation = 10;
+            yield return maxOffset = 10;
+
+            if (lookRight == true && lookLeft == false)
             {
-                yield return rotation++;
+                while (rotation < maxRotation)
+                {
+                    yield return rotation++;
+                }
             }
         }
     }

@@ -14,10 +14,12 @@ public class Movement : MonoBehaviour
 
     [SerializeField] public PowerBar powerBar;
 
-    public int BarMultiplier; // variable multiplier bar increase
+    public int barMultiplier; // variable multiplier bar increase
     public int speedMultiplier; // variable multiplies the speed
+    public int maxSpeed;
 
     private float spin;
+    public float slow;
 
     public bool goRight;
     public bool goLeft;
@@ -28,6 +30,7 @@ public class Movement : MonoBehaviour
     private bool rightPress;
     private bool fireRight;
     private bool fireLeft;
+
     public bool holdLeft;
     public bool holdRight;
 
@@ -49,12 +52,41 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        //slow down over time
+        rb.velocity = new Vector3(rb.velocity.x * slow, rb.velocity.y);
+        
+        //too fast right
+        if (rb.velocity.x >= maxSpeed)
+        {
+            rb.velocity = new Vector3(maxSpeed, rb.velocity.y);
+        }
+        //too fast left
+        if (rb.velocity.x <= -maxSpeed)
+        {
+            rb.velocity = new Vector3(-maxSpeed, rb.velocity.y);
+        }
+        //too fast up
+        if (rb.velocity.y >= maxSpeed)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, maxSpeed);
+        }
+        //too fast down
+        if (rb.velocity.y <= -maxSpeed)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, -maxSpeed);
+        }
+        //too fast spin
+        if(spinForce >= maxSpeed)
+        {
+            spinForce = maxSpeed;
+        }
+
         if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
         {
             mesh.transform.Rotate(0, 0, spin * spinForce); // spin
             if (spinForce > 0 && holdRight == false && holdLeft == false)
             {
-                spinForce -= 0.1f; // slow spin down
+                spinForce -= 0.05f; // slow spin down
             }
 
 
@@ -96,9 +128,9 @@ public class Movement : MonoBehaviour
 
                             if (force < maxForce) // don't go over max force
                             {
-                                force += BarMultiplier;
+                                force += barMultiplier;
                                 powerBar.SetSize(force / 100); //update power bar
-                                spinForce = force / 2;
+                                spinForce += 3;
                             }
                         }
                     }
@@ -157,22 +189,36 @@ public class Movement : MonoBehaviour
 
     private IEnumerator OnMoveLeft(InputValue value) // left trigger hold
     {
+        if (goLeft == false) // if previously going right
+        {
+            spin = -1;
+            spinForce /= 4;
+            if (GameObject.Find("Player").GetComponent<GrapplingHook>().hooked == false) // not hooked
+            {
+                slow = 0.97f;
+            }
+        }
         yield return goLeft = true;
         yield return goRight = false;
         yield return holdLeft = true;
-        spin = -1;
-        spinForce /= 4;
-        rb.drag = 1;
     }
 
     private IEnumerator OnMoveRight(InputValue value) // right trigger hold
     {
+        if (goRight == false) // if previously going left
+        {
+            spin = 1;
+            spinForce /= 4;
+            if (GameObject.Find("Player").GetComponent<GrapplingHook>().hooked == false) // not hooked
+            {
+                slow = 0.97f;
+            }
+
+        }
         yield return goRight = true;
         yield return goLeft = false;
         yield return holdRight = true;
-        spin = 1;
-        spinForce /= 4;
-        rb.drag = 1;
+        
     }
 
     private IEnumerator OnMoveLeftRelease(InputValue value) // left trigger release
@@ -182,7 +228,7 @@ public class Movement : MonoBehaviour
         if (goLeft == true)
         {
             yield return fireLeft = true;
-            rb.drag = 0;
+            slow = 1f; // no slowdown
         }
     }
 
@@ -193,7 +239,7 @@ public class Movement : MonoBehaviour
         if (goRight == true)
         {
             yield return fireRight = true;
-            rb.drag = 0;
+            slow = 1f; // no slowdown
         }
     }
 }

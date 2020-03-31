@@ -328,7 +328,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 2.465e-42, y: NaN, z: 1.756e-42, w: 4.5918e-41}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -447,11 +447,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 88913274}
-  - component: {fileID: 88913273}
   - component: {fileID: 88913279}
   - component: {fileID: 88913275}
-  - component: {fileID: 88913276}
   - component: {fileID: 88913278}
+  - component: {fileID: 88913273}
+  - component: {fileID: 88913276}
   - component: {fileID: 88913280}
   - component: {fileID: 88913277}
   - component: {fileID: 88913281}
@@ -545,8 +545,10 @@ MonoBehaviour:
   mesh: {fileID: 501090752}
   rb: {fileID: 88913275}
   powerBar: {fileID: 725559762}
-  BarMultiplier: 10
+  barMultiplier: 10
   speedMultiplier: 20
+  maxSpeed: 60
+  slow: 0
   goRight: 0
   goLeft: 0
   holdLeft: 0
@@ -615,7 +617,7 @@ SpringJoint:
   m_Damper: 1000
   m_MinDistance: 0
   m_MaxDistance: 1
-  m_Tolerance: 0.25
+  m_Tolerance: 0.5
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
@@ -3083,7 +3085,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 1.285698e-39, w: -3.11e-43}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -5246,7 +5248,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: -1.114e-42, y: 6e-45, z: 1.819e-42, w: 1e-45}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -7956,7 +7958,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 3.67343e-40, w: -3.11e-43}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0

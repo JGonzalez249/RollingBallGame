@@ -53,6 +53,7 @@ public class Movement : MonoBehaviour
     {
         if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
         {
+
             //slow down over time
             rb.velocity = new Vector3(rb.velocity.x * slow, rb.velocity.y);
 
@@ -82,13 +83,7 @@ public class Movement : MonoBehaviour
                 spinForce = maxSpeed;
             }
 
-
-            mesh.transform.Rotate(0, 0, spin * spinForce); // spin
-            if (spinForce > 0 && holdRight == false && holdLeft == false)
-            {
-                spinForce -= 0.05f; // slow spin down
-            }
-
+            mesh.transform.Rotate(0, 0, spin * spinForce + rb.velocity.x); // spin
 
             powerBar.SetSize(force / 100); //update power bar
 
@@ -142,6 +137,7 @@ public class Movement : MonoBehaviour
             {
                 if (fireRight == true)
                 {
+                    spinForce = 0;
                     rb.AddForce(transform.right * Time.deltaTime * force * speedMultiplier, ForceMode.Impulse);
                     force = 0;
                     fireRight = false;
@@ -152,6 +148,7 @@ public class Movement : MonoBehaviour
             {
                 if (fireLeft == true)
                 {
+                    spinForce = 0;
                     rb.AddForce(transform.right * Time.deltaTime * force * -speedMultiplier, ForceMode.Impulse);
                     force = 0;
                     fireLeft = false;
@@ -247,6 +244,7 @@ public class Movement : MonoBehaviour
             if (goLeft == true)
             {
                 yield return fireLeft = true;
+                spin = 1f;
                 slow = 1f; // no slowdown
             }
         }

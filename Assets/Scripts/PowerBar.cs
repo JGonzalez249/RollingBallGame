@@ -2,16 +2,16 @@
 
 public class PowerBar : MonoBehaviour
 {
-    public Transform bar;
+    public Transform powerBar;
 
     // Start is called before the first frame update
     private void Start()
     {
-        bar = transform.Find("Bar");
+        powerBar = transform.Find("PowerBar");
     }
 
     public void SetSize(float sizeNormalized)
     {
-        bar.localScale = new Vector3(sizeNormalized, 1f);
+        powerBar.localScale = new Vector3(sizeNormalized, 1f);
     }
 }

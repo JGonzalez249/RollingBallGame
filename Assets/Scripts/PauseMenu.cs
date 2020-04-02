@@ -17,7 +17,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Update()
     {
-        if (Gamepad.current.startButton.wasPressedThisFrame)
+        if (Gamepad.current.startButton.wasPressedThisFrame || Keyboard.current.escapeKey.wasPressedThisFrame)
         {
                 if (gameIsPaused == true) // unpause
             {

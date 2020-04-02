@@ -4,13 +4,19 @@ using UnityEngine.InputSystem;
 
 public class CameraFollow : MonoBehaviour
 {
-    public GameObject target;
+    private GameObject target;
+
     public int offset;
     public int maxOffset;
     public float rotation;
     public float maxRotation;
     public bool lookRight;
     public bool lookLeft;
+
+    private void Start()
+    {
+        target = GameObject.Find("Player");
+    }
 
     private void LateUpdate()
     {

@@ -24,7 +24,6 @@ public class AimHook : MonoBehaviour
             yield return hoz = 0;
             yield return vert = 3;
             GameObject.Find("Player").GetComponent<GrapplingHook>().aimUp = true;
-            GameObject.Find("Player").GetComponent<GrapplingHook>().aimDown = false;
             GameObject.Find("Player").GetComponent<GrapplingHook>().aimRight = false;
             GameObject.Find("Player").GetComponent<GrapplingHook>().aimLeft = false;
         }
@@ -38,22 +37,7 @@ public class AimHook : MonoBehaviour
             yield return vert = 3;
 
             GameObject.Find("Player").GetComponent<GrapplingHook>().aimUp = false;
-            GameObject.Find("Player").GetComponent<GrapplingHook>().aimDown = false;
             GameObject.Find("Player").GetComponent<GrapplingHook>().aimRight = true;
-            GameObject.Find("Player").GetComponent<GrapplingHook>().aimLeft = false;
-        }
-    }
-
-    private IEnumerator OnAimDown(InputValue value) // down
-    {
-        if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
-        {
-            yield return hoz = 0;
-            yield return vert = -3;
-
-            GameObject.Find("Player").GetComponent<GrapplingHook>().aimUp = false;
-            GameObject.Find("Player").GetComponent<GrapplingHook>().aimDown = true;
-            GameObject.Find("Player").GetComponent<GrapplingHook>().aimRight = false;
             GameObject.Find("Player").GetComponent<GrapplingHook>().aimLeft = false;
         }
     }
@@ -66,7 +50,6 @@ public class AimHook : MonoBehaviour
             yield return vert = 3;
 
             GameObject.Find("Player").GetComponent<GrapplingHook>().aimUp = false;
-            GameObject.Find("Player").GetComponent<GrapplingHook>().aimDown = false;
             GameObject.Find("Player").GetComponent<GrapplingHook>().aimRight = false;
             GameObject.Find("Player").GetComponent<GrapplingHook>().aimLeft = true;
         }

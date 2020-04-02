@@ -19,7 +19,6 @@ public class GrapplingHook : MonoBehaviour
     public bool aimRight;
     public bool aimLeft;
     public bool aimUp;
-    public bool aimDown;
 
     public bool fired;
     public bool hooked;
@@ -81,11 +80,6 @@ public class GrapplingHook : MonoBehaviour
                 if (aimUp == true)
                 {
                     shootDirY = 1;
-                    shootDirX = 0;
-                }
-                if (aimDown == true)
-                {
-                    shootDirY = -1;
                     shootDirX = 0;
                 }
             }

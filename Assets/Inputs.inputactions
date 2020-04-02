@@ -118,14 +118,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "AimDown",
-                    "type": "Button",
-                    "id": "42f8f28b-7af4-4d84-b9de-c5ab03b2827f",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "AimLeft",
                     "type": "Button",
                     "id": "544000e0-c387-461c-a56d-e8e936c99bc6",
@@ -149,7 +141,7 @@
                 {
                     "name": "",
                     "id": "04e34866-86d3-4f70-ab10-b0ae7bf3b3e8",
-                    "path": "<Gamepad>/rightShoulder",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "Press",
                     "processors": "",
                     "groups": "",
@@ -390,6 +382,17 @@
                 },
                 {
                     "name": "",
+                    "id": "d02df1b9-7cde-4397-9ec8-339c1d7c675f",
+                    "path": "<Keyboard>/2",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AimUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "beed3bbe-9ea0-4823-bf40-f4a9406b3904",
                     "path": "<Gamepad>/rightStick/right",
                     "interactions": "Press",
@@ -401,12 +404,12 @@
                 },
                 {
                     "name": "",
-                    "id": "bd134377-fb70-4709-b645-2eaf0bbc9eb0",
-                    "path": "<Gamepad>/rightStick/down",
+                    "id": "ef932df1-502a-4d9b-9a24-25c9fcb2e74c",
+                    "path": "<Keyboard>/3",
                     "interactions": "Press",
                     "processors": "",
                     "groups": "",
-                    "action": "AimDown",
+                    "action": "AimRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -415,6 +418,17 @@
                     "id": "7c2646ff-fe8a-4b39-bf95-04e8155fe97e",
                     "path": "<Gamepad>/rightStick/left",
                     "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AimLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6aab4f4a-58b0-4667-9104-120e60d5b41a",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "AimLeft",

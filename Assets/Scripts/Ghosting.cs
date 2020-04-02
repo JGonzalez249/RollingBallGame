@@ -5,23 +5,42 @@ using UnityEngine.UI;
 
 public class Ghosting : MonoBehaviour
 {
-    public Collider m_Collider;
+    private GameObject[] ghostableWall;
+
     public Text GhostText;
 
     public bool usingGhosting;
 
+    private void Start()
+    {
+        ghostableWall = GameObject.FindGameObjectsWithTag("Ghostable");//what is ghostable wall?
+    }
     private void Update()
     {
         if (usingGhosting == true)
         {
-            m_Collider.enabled = false;
+            foreach (GameObject go in ghostableWall) // for every ghostable wall
+            {
+                go.SetActive(false);
+            }
             GhostText.text = "Ghosting";
         }
 
         if (usingGhosting == false)
         {
-            m_Collider.enabled = true;
+            foreach (GameObject go in ghostableWall) // for every ghostable wall
+            {
+                go.SetActive(true);
+            }
             GhostText.text = "";
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Death" && usingGhosting == false) // if in wall and not ghosting
+        {
+            GameObject.Find("Player").GetComponent<Respawn>().death = true;
         }
     }
 

@@ -19,7 +19,7 @@ public class AimHook : MonoBehaviour
 
     private IEnumerator OnAimUp(InputValue value) // up
     {
-        if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
+        if (GameObject.Find("Canvas").GetComponent<PauseMenu>().gameIsPaused == false)
         {
             yield return hoz = 0;
             yield return vert = 3;
@@ -31,7 +31,7 @@ public class AimHook : MonoBehaviour
 
     private IEnumerator OnAimRight(InputValue value) // right
     {
-        if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
+        if (GameObject.Find("Canvas").GetComponent<PauseMenu>().gameIsPaused == false)
         {
             yield return hoz = 3;
             yield return vert = 3;
@@ -44,7 +44,7 @@ public class AimHook : MonoBehaviour
 
     private IEnumerator OnAimLeft(InputValue value) // left
     {
-        if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
+        if (GameObject.Find("Canvas").GetComponent<PauseMenu>().gameIsPaused == false)
         {
             yield return hoz = -3;
             yield return vert = 3;

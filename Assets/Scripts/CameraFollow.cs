@@ -20,7 +20,7 @@ public class CameraFollow : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
+        if (GameObject.Find("Canvas").GetComponent<PauseMenu>().gameIsPaused == false)
         {
             this.transform.position = new Vector3(target.transform.position.x, target.transform.position.y + 5, this.transform.position.z);
 
@@ -30,7 +30,7 @@ public class CameraFollow : MonoBehaviour
 
     private IEnumerator OnMoveLeft(InputValue value) // left trigger hold
     {
-        if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
+        if (GameObject.Find("Canvas").GetComponent<PauseMenu>().gameIsPaused == false)
         {
             yield return lookRight = false;
             yield return lookLeft = true;
@@ -48,7 +48,7 @@ public class CameraFollow : MonoBehaviour
 
     private IEnumerator OnMoveRight(InputValue value) // right trigger hold
     {
-        if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
+        if (GameObject.Find("Canvas").GetComponent<PauseMenu>().gameIsPaused == false)
         {
             yield return lookRight = true;
             yield return lookLeft = false;

@@ -51,7 +51,7 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
+        if (GameObject.Find("Canvas").GetComponent<PauseMenu>().gameIsPaused == false)
         {
 
             //slow down over time
@@ -166,7 +166,7 @@ public class Movement : MonoBehaviour
 
     private IEnumerator OnUp(InputValue value) // up
     {
-        if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
+        if (GameObject.Find("Canvas").GetComponent<PauseMenu>().gameIsPaused == false)
         {
             yield return upPress = true;
         }
@@ -174,7 +174,7 @@ public class Movement : MonoBehaviour
 
     private IEnumerator OnRight(InputValue value) // right
     {
-        if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
+        if (GameObject.Find("Canvas").GetComponent<PauseMenu>().gameIsPaused == false)
         {
             yield return rightPress = true;
         }
@@ -182,7 +182,7 @@ public class Movement : MonoBehaviour
 
     private IEnumerator OnDown(InputValue value) // down
     {
-        if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
+        if (GameObject.Find("Canvas").GetComponent<PauseMenu>().gameIsPaused == false)
         {
             yield return downPress = true;
         }
@@ -190,7 +190,7 @@ public class Movement : MonoBehaviour
 
     private IEnumerator OnLeft(InputValue value) // left
     {
-        if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
+        if (GameObject.Find("Canvas").GetComponent<PauseMenu>().gameIsPaused == false)
         {
             yield return leftPress = true;
         }
@@ -198,7 +198,7 @@ public class Movement : MonoBehaviour
 
     private IEnumerator OnMoveLeft(InputValue value) // left trigger hold
     {
-        if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
+        if (GameObject.Find("Canvas").GetComponent<PauseMenu>().gameIsPaused == false)
         {
             if (goLeft == false) // if previously going right
             {
@@ -217,7 +217,7 @@ public class Movement : MonoBehaviour
 
     private IEnumerator OnMoveRight(InputValue value) // right trigger hold
     {
-        if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
+        if (GameObject.Find("Canvas").GetComponent<PauseMenu>().gameIsPaused == false)
         {
             if (goRight == false) // if previously going left
             {
@@ -237,7 +237,7 @@ public class Movement : MonoBehaviour
 
     private IEnumerator OnMoveLeftRelease(InputValue value) // left trigger release
     {
-        if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
+        if (GameObject.Find("Canvas").GetComponent<PauseMenu>().gameIsPaused == false)
         {
             yield return holdLeft = false;
 
@@ -252,7 +252,7 @@ public class Movement : MonoBehaviour
 
     private IEnumerator OnMoveRightRelease(InputValue value) // right trigger release
     {
-        if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
+        if (GameObject.Find("Canvas").GetComponent<PauseMenu>().gameIsPaused == false)
         {
             yield return holdRight = false;
 

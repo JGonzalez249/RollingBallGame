@@ -60,7 +60,7 @@ public class GrapplingHook : MonoBehaviour
 
     private IEnumerator OnHook(InputValue value) // east - right button
     {
-        if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
+        if (GameObject.Find("Canvas").GetComponent<PauseMenu>().gameIsPaused == false)
         {
             if (fired == false && hooked == false)
             {

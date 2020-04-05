@@ -23,10 +23,6 @@ public class Ghosting : MonoBehaviour
         ghostBar.SetSize(1.0f); // set ghost bar to 1
         ghostableWall = GameObject.FindGameObjectsWithTag("Ghostable");//what is ghostable wall?
     }
-    private void Update()
-    {
-
-    }
 
     private void OnTriggerStay(Collider other)
     {
@@ -38,7 +34,7 @@ public class Ghosting : MonoBehaviour
 
     private IEnumerator OnGhosting(InputValue value) // press ghosting
     {
-        if (GameObject.Find("EventSystem").GetComponent<PauseMenu>().gameIsPaused == false)
+        if (GameObject.Find("Canvas").GetComponent<PauseMenu>().gameIsPaused == false)
         {
             
             if (usingGhosting == false && ready == true)

@@ -41,7 +41,6 @@ public class ControlMenu : MonoBehaviour
     {
         if (controlMenu == true)
         {
-
             if (sceneName == "Main_Menu")
             {
                 if (GameObject.Find("Canvas").GetComponent<MainMenu>().inMainMenu == true) // if Main Menu is enabled

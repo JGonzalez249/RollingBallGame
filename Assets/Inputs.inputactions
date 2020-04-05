@@ -86,14 +86,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "UnPause",
-                    "type": "Button",
-                    "id": "325c4b2b-c4e5-4805-bef0-02dd7acd8270",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "Pause",
                     "type": "Button",
                     "id": "de4483fc-1374-44b4-95f7-d35c3a9c262a",
@@ -432,28 +424,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "AimLeft",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "fec6141b-d539-48d1-aee9-31a7948ade4d",
-                    "path": "<Gamepad>/start",
-                    "interactions": "Press",
-                    "processors": "",
-                    "groups": "",
-                    "action": "UnPause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8a7fb3d6-56f3-4801-98f0-f8309a99d7d7",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "Press",
-                    "processors": "",
-                    "groups": "",
-                    "action": "UnPause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

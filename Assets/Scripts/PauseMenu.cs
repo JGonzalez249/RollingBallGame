@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PauseMenu : MonoBehaviour
 {
-    public  bool gameIsPaused;
+    public bool gameIsPaused;
     public GameObject pauseMenuUI;
 
     private void Start()
@@ -15,24 +15,19 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    private void Update()
+    private IEnumerator OnPause(InputValue value) // Pause
     {
-        if (Gamepad.current.startButton.wasPressedThisFrame || Keyboard.current.escapeKey.wasPressedThisFrame)
+        if (gameIsPaused == false) // if unpaused
         {
-                if (gameIsPaused == true) // unpause
-            {
-                pauseMenuUI.SetActive(false);
-                Time.timeScale = 1f;
-                gameIsPaused = false;
-                Debug.Log("unpause");
-            }
-            else if (gameIsPaused == false) // pause
-            {
-                pauseMenuUI.SetActive(true);
-                Time.timeScale = 0f;
-                gameIsPaused = true;
-                Debug.Log("pause");
-            }
+            pauseMenuUI.SetActive(true);
+            Time.timeScale = 0f;
+            yield return gameIsPaused = true;
+        }
+        else if (gameIsPaused == true) // if paused
+        {
+            pauseMenuUI.SetActive(false);
+            Time.timeScale = 1f;
+            yield return gameIsPaused = false;
         }
     }
 }

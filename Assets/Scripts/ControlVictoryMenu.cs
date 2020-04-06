@@ -3,47 +3,35 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
-public class ControlMenu : MonoBehaviour
+public class ControlVictoryMenu : MonoBehaviour
 {
     public Button currentButton;
-    //Main Menu
+    //Pause Menu
     public Button button1;
     public Button button2;
     public Button button3;
-    public Button button4;
-
-    //Controls Menu
-    public Button controlBackButton;
 
     //Credits Menu
     public Button creditsBackButton;
 
-    public Scene currentScene;
-    public string sceneName;
-
-    public bool controlMenu;
+    public bool controlVictoryMenu;
 
     public int numOfButtons;
     public int buttonSelection;
 
     void Start()
     {
-        // Create a temporary reference to the current scene.
-        currentScene = SceneManager.GetActiveScene();
-        controlMenu = true;
+        controlVictoryMenu = true;
         buttonSelection = 1;
-        // Retrieve the name of this scene.
-        sceneName = currentScene.name;
     }
     public void Update()
     {
-        if (controlMenu == true)
+        if (controlVictoryMenu == true)
         {
-            if (GameObject.Find("Canvas").GetComponent<MainMenu>().inMainMenu == true) // if Main Menu is enabled
+            if (GameObject.Find("Canvas").GetComponent<VictoryMenu>().inVictoryMenu == true) // if Pause Menu is enabled
             {
-                numOfButtons = 4;
+                numOfButtons = 3;
 
                 if (buttonSelection == 1) // button 1 hover
                 {
@@ -60,20 +48,8 @@ public class ControlMenu : MonoBehaviour
                     button3.Select();
                     currentButton = button3;
                 }
-                if (buttonSelection == 4) // button 4 hover
-                {
-                    button4.Select();
-                    currentButton = button4;
-                }
             }
-            else if (GameObject.Find("Canvas").GetComponent<MainMenu>().inControlsMenu == true) // if Control Menu is enabled
-            {
-                numOfButtons = 1;
-
-                controlBackButton.Select();
-                currentButton = controlBackButton;
-            }
-            else if (GameObject.Find("Canvas").GetComponent<MainMenu>().inCreditsMenu == true) // if Credits Menu is enabled
+            else if (GameObject.Find("Canvas").GetComponent<VictoryMenu>().inCreditsMenu == true) // if Control Menu is enabled
             {
                 numOfButtons = 1;
 
@@ -97,12 +73,11 @@ public class ControlMenu : MonoBehaviour
                 currentButton.onClick.Invoke();
             }
         }
-
     }
 
     private IEnumerator OnUp(InputValue value) // up
     {
-        if (controlMenu == true)
+        if (controlVictoryMenu == true)
         {
             yield return buttonSelection--;
         }
@@ -110,7 +85,7 @@ public class ControlMenu : MonoBehaviour
 
     private IEnumerator OnDown(InputValue value) // down
     {
-        if (controlMenu == true)
+        if (controlVictoryMenu == true)
         {
             yield return buttonSelection++;
         }

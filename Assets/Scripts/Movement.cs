@@ -42,7 +42,7 @@ public class Movement : MonoBehaviour
     public float force;
     public float spinForce;
 
-    private int maxForce = 100;
+    private int maxForce = 200;
 
     // Start is called before the first frame update
     private void Start()
@@ -95,7 +95,7 @@ public class Movement : MonoBehaviour
 
             mesh.transform.Rotate(0, 0, spin * spinForce + rb.velocity.x); // spin
 
-            powerBar.SetSize(force / 100); //update power bar
+            powerBar.SetSize(force / 200); //update power bar
 
             //right-left text
             if (holdRight == true && holdLeft == false) // right text
@@ -134,7 +134,7 @@ public class Movement : MonoBehaviour
                             if (force < maxForce) // don't go over max force
                             {
                                 force += barMultiplier;
-                                powerBar.SetSize(force / 100); //update power bar
+                                powerBar.SetSize(force / 200); //update power bar
                                 spinForce += 3;
                             }
                         }

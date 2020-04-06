@@ -9,9 +9,11 @@ public class Ghosting : MonoBehaviour
 
     [SerializeField] public GhostBar ghostBar;
 
-    public float div = 50; // ghost time division -- higher = more time
+    public AudioSource GhostSource;
 
     public Text GhostText;
+
+    public float div = 40; // ghost time division -- higher = more time
 
     public bool usingGhosting;
 
@@ -22,6 +24,7 @@ public class Ghosting : MonoBehaviour
     {
         ghostBar.SetSize(1.0f); // set ghost bar to 1
         ghostableWall = GameObject.FindGameObjectsWithTag("Ghostable");//what is ghostable wall?
+        GhostSource.Stop();
     }
 
     private void OnTriggerStay(Collider other)
@@ -39,6 +42,7 @@ public class Ghosting : MonoBehaviour
             
             if (usingGhosting == false && ready == true)
             {
+                GhostSource.Play();
                 int i = 1;
 
                 yield return usingGhosting = true;
@@ -64,6 +68,7 @@ public class Ghosting : MonoBehaviour
 
                 yield return startCooldown = true; // start cooldown
                 yield return usingGhosting = false;
+                GhostSource.Stop();
             }
 
             if (startCooldown == true)

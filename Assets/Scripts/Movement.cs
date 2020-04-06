@@ -15,6 +15,9 @@ public class Movement : MonoBehaviour
 
     public Rigidbody rb;
 
+    public AudioSource ChargeSource;
+    public AudioSource ChargeRelease;
+
     [SerializeField] public PowerBar powerBar;
 
     public int barMultiplier; // variable multiplier bar increase
@@ -49,6 +52,8 @@ public class Movement : MonoBehaviour
         powerBar.SetSize(0.0f);
         lChargeParticle.Stop();
         rChargeParticle.Stop();
+        ChargeRelease.Stop();
+        ChargeSource.Stop();
 
         rb = GetComponent<Rigidbody>();
     }
@@ -214,6 +219,8 @@ public class Movement : MonoBehaviour
                     slow = 0.97f;
                 }
             }
+            ChargeRelease.Stop();
+            ChargeSource.Play();
             lChargeParticle.Play();
             rChargeParticle.Stop();
             yield return goLeft = true;
@@ -236,6 +243,8 @@ public class Movement : MonoBehaviour
                 }
 
             }
+            ChargeSource.Play();
+            ChargeRelease.Stop();
             rChargeParticle.Play();
             lChargeParticle.Stop();
             yield return goRight = true;
@@ -248,6 +257,8 @@ public class Movement : MonoBehaviour
     {
         if (GameObject.Find("Canvas").GetComponent<PauseMenu>().gameIsPaused == false)
         {
+            ChargeSource.Stop();
+            ChargeRelease.Play();
             lChargeParticle.Stop();
             rChargeParticle.Stop();
             yield return holdLeft = false;
@@ -265,6 +276,8 @@ public class Movement : MonoBehaviour
     {
         if (GameObject.Find("Canvas").GetComponent<PauseMenu>().gameIsPaused == false)
         {
+            ChargeSource.Stop();
+            ChargeRelease.Play();
             lChargeParticle.Stop();
             rChargeParticle.Stop();
             yield return holdRight = false;

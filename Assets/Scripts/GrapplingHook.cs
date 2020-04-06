@@ -33,6 +33,8 @@ public class GrapplingHook : MonoBehaviour
     {
         sj = GetComponent<SpringJoint>();
         sj.connectedBody = rb2;
+
+        aimUp = true;
     }
 
     private void Update()
@@ -65,8 +67,6 @@ public class GrapplingHook : MonoBehaviour
             if (fired == false && hooked == false)
             {
                 yield return fired = true;
-                shootDirX = 0;
-                shootDirY = 1;
                 if (aimRight == true)
                 {
                     shootDirX = 1;
@@ -94,7 +94,7 @@ public class GrapplingHook : MonoBehaviour
 
         private void Fire()  //firing the hook
     {
-        Vector3 hookVel = new Vector3(2 * shootDirX, 2 * shootDirY, 0);
+        Vector3 hookVel = new Vector3(3 * shootDirX, 3 * shootDirY, 0);
         hook.transform.Translate(hookVel * Time.deltaTime * hookTravelSpeed);
         currentDistance = Vector3.Distance(transform.position, hook.transform.position);
     }

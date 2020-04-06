@@ -8,6 +8,9 @@ public class Movement : MonoBehaviour
     public GameObject leftTxt;
     public GameObject noneTxt;
 
+    public ParticleSystem rChargeParticle;
+    public ParticleSystem lChargeParticle;
+
     public Transform mesh;
 
     public Rigidbody rb;
@@ -44,6 +47,8 @@ public class Movement : MonoBehaviour
         goRight = false;
         goLeft = false;
         powerBar.SetSize(0.0f);
+        lChargeParticle.Stop();
+        rChargeParticle.Stop();
 
         rb = GetComponent<Rigidbody>();
     }
@@ -209,6 +214,8 @@ public class Movement : MonoBehaviour
                     slow = 0.97f;
                 }
             }
+            lChargeParticle.Play();
+            rChargeParticle.Stop();
             yield return goLeft = true;
             yield return goRight = false;
             yield return holdLeft = true;
@@ -229,6 +236,8 @@ public class Movement : MonoBehaviour
                 }
 
             }
+            rChargeParticle.Play();
+            lChargeParticle.Stop();
             yield return goRight = true;
             yield return goLeft = false;
             yield return holdRight = true;
@@ -239,6 +248,8 @@ public class Movement : MonoBehaviour
     {
         if (GameObject.Find("Canvas").GetComponent<PauseMenu>().gameIsPaused == false)
         {
+            lChargeParticle.Stop();
+            rChargeParticle.Stop();
             yield return holdLeft = false;
 
             if (goLeft == true)
@@ -254,6 +265,8 @@ public class Movement : MonoBehaviour
     {
         if (GameObject.Find("Canvas").GetComponent<PauseMenu>().gameIsPaused == false)
         {
+            lChargeParticle.Stop();
+            rChargeParticle.Stop();
             yield return holdRight = false;
 
             if (goRight == true)

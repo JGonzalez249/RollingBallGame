@@ -133,6 +133,7 @@ public class Movement : MonoBehaviour
 
                             if (force < maxForce) // don't go over max force
                             {
+
                                 force += barMultiplier;
                                 powerBar.SetSize(force / 200); //update power bar
                                 spinForce += 3;

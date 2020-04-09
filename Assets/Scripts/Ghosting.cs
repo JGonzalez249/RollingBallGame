@@ -24,6 +24,11 @@ public class Ghosting : MonoBehaviour
     {
         ghostBar.SetSize(1.0f); // set ghost bar to 1
         ghostableWall = GameObject.FindGameObjectsWithTag("Ghostable");//what is ghostable wall?
+        if (GameObject.FindGameObjectsWithTag("Ghostable") == null) // if cannot find any ghostable walls in level
+        {
+            print("Cannot Find Ghostable Walls");
+        }
+
         GhostSource.Stop();
     }
 

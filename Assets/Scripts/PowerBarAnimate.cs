@@ -19,19 +19,19 @@ public class PowerBarAnimate : MonoBehaviour
         {
             powerAnim.SetInteger("GetPower", 0);
         }
-        if (GameObject.Find("Player").GetComponent<Movement>().force >= 50 && GameObject.Find("Player").GetComponent<Movement>().force < 100)
+        if (GameObject.Find("Player").GetComponent<Movement>().force >= 24 && GameObject.Find("Player").GetComponent<Movement>().force < 49)
         {
             powerAnim.SetInteger("GetPower", 1);
         }
-        if (GameObject.Find("Player").GetComponent<Movement>().force >= 100 && GameObject.Find("Player").GetComponent<Movement>().force < 150)
+        if (GameObject.Find("Player").GetComponent<Movement>().force >= 49 && GameObject.Find("Player").GetComponent<Movement>().force < 74)
         {
             powerAnim.SetInteger("GetPower", 2);
         }
-        if (GameObject.Find("Player").GetComponent<Movement>().force >= 150 && GameObject.Find("Player").GetComponent<Movement>().force < 200)
+        if (GameObject.Find("Player").GetComponent<Movement>().force >= 74 && GameObject.Find("Player").GetComponent<Movement>().force < 99)
         {
             powerAnim.SetInteger("GetPower", 3);
         }
-        if (GameObject.Find("Player").GetComponent<Movement>().force == 200)
+        if (GameObject.Find("Player").GetComponent<Movement>().force > 99)
         {
             powerAnim.SetInteger("GetPower", 4);
         }

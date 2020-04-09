@@ -18,6 +18,21 @@ public class CameraFollow : MonoBehaviour
         target = GameObject.Find("Player");
     }
 
+    private void Update()
+    {
+        if (GameObject.Find("Canvas").GetComponent<PauseMenu>().gameIsPaused == false)
+        {
+            if (target.GetComponent<Movement>().holdLeft == true && target.GetComponent<Movement>().holdRight == false && lookLeft == false) // look left
+            {
+                StartCoroutine(LookLeft());
+            }
+            if (target.GetComponent<Movement>().holdLeft == false && target.GetComponent<Movement>().holdRight == true && lookRight == false) // look right
+            {
+                StartCoroutine(LookRight());
+            }
+        }
+    }
+
     private void LateUpdate()
     {
         if (GameObject.Find("Canvas").GetComponent<PauseMenu>().gameIsPaused == false)
@@ -28,10 +43,9 @@ public class CameraFollow : MonoBehaviour
         }
     }
 
-    private IEnumerator OnMoveLeft(InputValue value) // left trigger hold
+    private IEnumerator LookLeft() // left trigger hold
     {
-        if (GameObject.Find("Canvas").GetComponent<PauseMenu>().gameIsPaused == false)
-        {
+        
             yield return lookRight = false;
             yield return lookLeft = true;
             yield return maxRotation = -10;
@@ -40,16 +54,13 @@ public class CameraFollow : MonoBehaviour
             {
                 while (rotation > maxRotation)
                 {
-                    yield return rotation--;
+                    yield return rotation-=0.5f;
                 }
             }
-        }
     }
 
-    private IEnumerator OnMoveRight(InputValue value) // right trigger hold
+    private IEnumerator LookRight() // right trigger hold
     {
-        if (GameObject.Find("Canvas").GetComponent<PauseMenu>().gameIsPaused == false)
-        {
             yield return lookRight = true;
             yield return lookLeft = false;
             yield return maxRotation = 10;
@@ -62,6 +73,5 @@ public class CameraFollow : MonoBehaviour
                     yield return rotation++;
                 }
             }
-        }
     }
 }

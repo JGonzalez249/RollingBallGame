@@ -27,22 +27,22 @@ public class Movement : MonoBehaviour
     private float spin;
     private float slow;
 
-    private bool holdLeft;
-    private bool holdRight;
-    private bool goRight;
-    private bool goLeft;
-    private bool upPress;
-    private bool downPress;
-    private bool leftPress;
-    private bool rightPress;
-    private bool fireRight;
-    private bool fireLeft;
+    public bool holdLeft;
+    public bool holdRight;
+    public bool goRight;
+    public bool goLeft;
+    public bool upPress;
+    public bool downPress;
+    public bool leftPress;
+    public bool rightPress;
+    public bool fireRight;
+    public bool fireLeft;
 
 
     public float force;
     public float spinForce;
 
-    private int maxForce = 200;
+    private int maxForce = 100;
 
     // Start is called before the first frame update
     private void Start()
@@ -67,35 +67,9 @@ public class Movement : MonoBehaviour
             //slow down over time
             rb.velocity = new Vector3(rb.velocity.x * slow, rb.velocity.y);
 
-            //too fast right
-            if (rb.velocity.x >= maxSpeed)
-            {
-                rb.velocity = new Vector3(maxSpeed, rb.velocity.y);
-            }
-            //too fast left
-            if (rb.velocity.x <= -maxSpeed)
-            {
-                rb.velocity = new Vector3(-maxSpeed, rb.velocity.y);
-            }
-            //too fast up
-            if (rb.velocity.y >= maxSpeed)
-            {
-                rb.velocity = new Vector3(rb.velocity.x, maxSpeed);
-            }
-            //too fast down
-            if (rb.velocity.y <= -maxSpeed)
-            {
-                rb.velocity = new Vector3(rb.velocity.x, -maxSpeed);
-            }
-            //too fast spin
-            if (spinForce >= maxSpeed)
-            {
-                spinForce = maxSpeed;
-            }
-
             mesh.transform.Rotate(0, 0, spin * spinForce + rb.velocity.x); // spin
 
-            powerBar.SetSize(force / 200); //update power bar
+            powerBar.SetSize(force / 100); //update power bar
 
             //right-left text
             if (holdRight == true && holdLeft == false) // right text
@@ -120,23 +94,37 @@ public class Movement : MonoBehaviour
             //increase Charge
             if (holdLeft == true && holdRight == false || holdRight == true && holdLeft == false) // holding either trigger alone
             {
-                if (upPress == true)
+                if (upPress == true) // spin
                 {
-                    if (leftPress == true || rightPress == true) // clockwise or counterclockwise
+                    if (leftPress == true)
                     {
                         if (downPress == true)
                         {
-                            upPress = false;
-                            leftPress = false;
-                            rightPress = false;
-                            downPress = false;
-
-                            if (force < maxForce) // don't go over max force
+                            if (rightPress == true)
                             {
+                                upPress = false;
+                                leftPress = false;
+                                rightPress = false;
+                                downPress = false;
 
-                                force += barMultiplier;
-                                powerBar.SetSize(force / 200); //update power bar
-                                spinForce += 3;
+                                if (holdRight == true && holdLeft == false)
+                                {
+                                    rChargeParticle.Play();
+                                }
+                                if (holdLeft == true && holdRight == false)
+                                {
+                                    lChargeParticle.Play();
+                                }
+
+                                if (force == 0)
+                                {
+                                    ChargeSource.Play();
+                                }
+
+                                if (force < maxForce) // don't go over max force
+                                {
+                                    StartCoroutine(IncreaseBar());
+                                }
                             }
                         }
                     }
@@ -172,7 +160,45 @@ public class Movement : MonoBehaviour
             {
                 force = maxForce;
             }
+            //too fast right
+            if (rb.velocity.x >= maxSpeed)
+            {
+                rb.velocity = new Vector3(maxSpeed, rb.velocity.y);
+            }
+            //too fast left
+            if (rb.velocity.x <= -maxSpeed)
+            {
+                rb.velocity = new Vector3(-maxSpeed, rb.velocity.y);
+            }
+            //too fast up
+            if (rb.velocity.y >= maxSpeed)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, maxSpeed);
+            }
+            //too fast down
+            if (rb.velocity.y <= -maxSpeed)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, -maxSpeed);
+            }
+            //too fast spin
+            if (spinForce >= maxSpeed)
+            {
+                spinForce = maxSpeed;
+            }
         }
+    }
+
+    private IEnumerator IncreaseBar()
+    {
+        int i = 1;
+
+        while (i < barMultiplier && force != maxForce && goLeft == false && goRight == false)
+        {
+            yield return force += 4.15f;
+            yield return spinForce++;
+            yield return i++;
+        }
+        StopCoroutine(IncreaseBar());
     }
 
     private IEnumerator OnUp(InputValue value) // up
@@ -211,20 +237,18 @@ public class Movement : MonoBehaviour
     {
         if (GameObject.Find("Canvas").GetComponent<PauseMenu>().gameIsPaused == false)
         {
-            if (goLeft == false) // if previously going right
+            spin = -1;
+            if (goRight == true) // if previously going right
             {
-                spin = -1;
+                
                 spinForce /= 4;
                 if (GameObject.Find("Player").GetComponent<GrapplingHook>().hooked == false) // not hooked
                 {
                     slow = 0.97f;
                 }
             }
-            ChargeRelease.Stop();
-            ChargeSource.Play();
-            lChargeParticle.Play();
-            rChargeParticle.Stop();
-            yield return goLeft = true;
+           
+            yield return goLeft = false;
             yield return goRight = false;
             yield return holdLeft = true;
         }
@@ -244,11 +268,8 @@ public class Movement : MonoBehaviour
                 }
 
             }
-            ChargeSource.Play();
-            ChargeRelease.Stop();
-            rChargeParticle.Play();
-            lChargeParticle.Stop();
-            yield return goRight = true;
+
+            yield return goRight = false;
             yield return goLeft = false;
             yield return holdRight = true;
         }
@@ -258,12 +279,20 @@ public class Movement : MonoBehaviour
     {
         if (GameObject.Find("Canvas").GetComponent<PauseMenu>().gameIsPaused == false)
         {
-            ChargeSource.Stop();
-            ChargeRelease.Play();
-            lChargeParticle.Stop();
-            rChargeParticle.Stop();
             yield return holdLeft = false;
 
+            if(holdLeft == false && holdRight == false && force > 1)
+            {
+                ChargeRelease.Play();
+                ChargeSource.Stop();
+            }
+
+            lChargeParticle.Stop();
+
+            if (holdRight == false)
+            {
+                yield return goLeft = true;
+            }
             if (goLeft == true)
             {
                 yield return fireLeft = true;
@@ -277,12 +306,20 @@ public class Movement : MonoBehaviour
     {
         if (GameObject.Find("Canvas").GetComponent<PauseMenu>().gameIsPaused == false)
         {
-            ChargeSource.Stop();
-            ChargeRelease.Play();
-            lChargeParticle.Stop();
-            rChargeParticle.Stop();
             yield return holdRight = false;
 
+            if (holdLeft == false && holdRight == false && force > 1)
+            {
+                ChargeRelease.Play();
+                ChargeSource.Stop();
+            }
+
+            rChargeParticle.Stop();
+
+            if (holdLeft == false)
+            {
+                yield return goRight = true;
+            }
             if (goRight == true)
             {
                 yield return fireRight = true;

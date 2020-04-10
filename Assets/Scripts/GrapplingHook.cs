@@ -6,6 +6,7 @@ public class GrapplingHook : MonoBehaviour
 {
     public GameObject hook;
     public GameObject hookHolder;
+public Rigidbody prb; // player
     public Rigidbody rb; // hook
     public Rigidbody rb2; // hook holder
     public SpringJoint sj;
@@ -94,9 +95,24 @@ public class GrapplingHook : MonoBehaviour
 
         private void Fire()  //firing the hook
     {
-        Vector3 hookVel = new Vector3(3 * shootDirX, 3 * shootDirY, 0);
-        hook.transform.Translate(hookVel * Time.deltaTime * hookTravelSpeed);
-        currentDistance = Vector3.Distance(transform.position, hook.transform.position);
+        if (aimRight == true) // right
+        {
+            Vector3 hookVel = new Vector3(3 * shootDirX + Mathf.Abs(prb.velocity.x / 20), 3 * shootDirY, 0);
+            hook.transform.Translate(hookVel * Time.deltaTime * hookTravelSpeed);
+            currentDistance = Vector3.Distance(transform.position, hook.transform.position);
+        }
+        if (aimUp == true)
+        {
+            Vector3 hookVel = new Vector3(prb.velocity.x / 20, 3 * shootDirY, 0);
+            hook.transform.Translate(hookVel * Time.deltaTime * hookTravelSpeed);
+            currentDistance = Vector3.Distance(transform.position, hook.transform.position);
+        }
+        if (aimLeft == true) // left
+        {
+            Vector3 hookVel = new Vector3(3* shootDirX - Mathf.Abs(prb.velocity.x / 20), 3 * shootDirY, 0);
+            hook.transform.Translate(hookVel * Time.deltaTime * hookTravelSpeed);
+            currentDistance = Vector3.Distance(transform.position, hook.transform.position);
+        }
     }
 
     public void ReturnHook()

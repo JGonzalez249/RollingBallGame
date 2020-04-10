@@ -12,6 +12,16 @@ public class AimHook : MonoBehaviour
     private float hoz;
     private float vert;
 
+    private void Start()
+    {
+        hoz = 0;
+        vert = 3;
+        rotationpos = 0;
+        GameObject.Find("Player").GetComponent<GrapplingHook>().aimUp = true;
+        GameObject.Find("Player").GetComponent<GrapplingHook>().aimRight = false;
+        GameObject.Find("Player").GetComponent<GrapplingHook>().aimLeft = false;
+    }
+
     private void FixedUpdate()
     {
        aimMarker.transform.position = new Vector3(player.transform.position.x + hoz, player.transform.position.y + vert, this.transform.position.z);

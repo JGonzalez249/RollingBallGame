@@ -37,7 +37,7 @@ public class CameraFollow : MonoBehaviour
     {
         if (GameObject.Find("Canvas").GetComponent<PauseMenu>().gameIsPaused == false)
         {
-            this.transform.position = new Vector3(target.transform.position.x, target.transform.position.y + 5, this.transform.position.z);
+            this.transform.position = new Vector3(target.transform.position.x, target.transform.position.y + 5, target.transform.position.z - 20);
 
             transform.rotation = Quaternion.Euler(0, rotation, 0);
         }

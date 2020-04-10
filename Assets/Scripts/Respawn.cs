@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Respawn : MonoBehaviour
 {
-    public Transform RespawnPosition;
+    public GameObject RespawnPosition;
 
     public GameObject RespawnTxt;
 
@@ -16,6 +16,7 @@ public class Respawn : MonoBehaviour
     {
         death = false;
         RespawnTxt.SetActive(false);
+        RespawnPosition = GameObject.FindGameObjectWithTag("Respawn");
     }
 
     // Update is called once per frame
@@ -29,9 +30,15 @@ public class Respawn : MonoBehaviour
 
     private IEnumerator respawn()
     {
-        Debug.Log("Respawn");
+        //rotation
+        GameObject.FindGameObjectWithTag("Player").GetComponent<RotateLevel>().currentYRot = 0;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<RotateLevel>().lvl.transform.position =new Vector3(0, 0, 0);
+
         death = false;
+
+        //move to respawn position
         this.transform.position = new Vector2(RespawnPosition.transform.position.x, RespawnPosition.transform.position.y);
+
         RespawnTxt.SetActive(true);
         GameObject.Find("Player").GetComponent<Ghosting>().usingGhosting = false; // turn off ghosting
         GameObject.Find("Player").GetComponent<Movement>().force = 0f; // reset force
@@ -40,6 +47,5 @@ public class Respawn : MonoBehaviour
         GameObject.Find("Player").GetComponent<Movement>().spinForce = 0; // stop spinning
         yield return new WaitForSeconds(0.5f);
         RespawnTxt.SetActive(false);
-
     }
 }

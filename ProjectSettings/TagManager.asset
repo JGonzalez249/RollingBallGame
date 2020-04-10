@@ -7,6 +7,10 @@ TagManager:
   - Hook
   - Hookable
   - GhostText
+  - Ghostable
+  - Death
+  - Rotate
+  - Level
   layers:
   - Default
   - TransparentFX

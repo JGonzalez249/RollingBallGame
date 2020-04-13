@@ -11,12 +11,16 @@ public class Respawn : MonoBehaviour
 
     public bool death;
 
+    private Vector3 lvlStart;
+
     // Start is called before the first frame update
     private void Start()
     {
         death = false;
         RespawnTxt.SetActive(false);
         RespawnPosition = GameObject.FindGameObjectWithTag("Respawn");
+
+        lvlStart = GameObject.FindGameObjectWithTag("Player").GetComponent<RotateLevel>().lvl.transform.position;
     }
 
     // Update is called once per frame
@@ -32,12 +36,13 @@ public class Respawn : MonoBehaviour
     {
         //rotation
         GameObject.FindGameObjectWithTag("Player").GetComponent<RotateLevel>().currentYRot = 0;
-        GameObject.FindGameObjectWithTag("Player").GetComponent<RotateLevel>().lvl.transform.position =new Vector3(0, 0, 0);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<RotateLevel>().lvl.transform.position = lvlStart;
 
         death = false;
 
         //move to respawn position
-        this.transform.position = new Vector2(RespawnPosition.transform.position.x, RespawnPosition.transform.position.y);
+        yield return new WaitForSeconds(0.1f);
+        this.transform.position = new Vector3(RespawnPosition.transform.position.x, RespawnPosition.transform.position.y, RespawnPosition.transform.position.z);
 
         RespawnTxt.SetActive(true);
         GameObject.Find("Player").GetComponent<Ghosting>().usingGhosting = false; // turn off ghosting

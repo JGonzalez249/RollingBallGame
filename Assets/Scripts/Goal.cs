@@ -9,6 +9,7 @@ public class Goal : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            GameObject.Find("LevelCount").GetComponent<LevelCount>().levelCount++;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }

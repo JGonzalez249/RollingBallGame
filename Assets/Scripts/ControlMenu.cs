@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class ControlMenu : MonoBehaviour
 {
     public Button currentButton;
+
     //Main Menu
     public Button button1;
     public Button button2;

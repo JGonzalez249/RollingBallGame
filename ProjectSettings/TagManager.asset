@@ -11,6 +11,8 @@ TagManager:
   - Death
   - Rotate
   - Level
+  - Wall1
+  - Wall2
   layers:
   - Default
   - TransparentFX

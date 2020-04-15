@@ -9425,6 +9425,7 @@ GameObject:
   - component: {fileID: 4568350512799335461}
   - component: {fileID: 6081722596254155506}
   - component: {fileID: 3225938593827753508}
+  - component: {fileID: 2798408087259677395}
   m_Layer: 0
   m_Name: Tube_New_Angled1
   m_TagString: Untagged
@@ -9432,6 +9433,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!64 &2798408087259677395
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2798408087259677394}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 1678836115376031996, guid: e06434e9cba4a1d4c8dd0d30871b578d, type: 3}
 --- !u!33 &2899573386294334629
 MeshFilter:
   m_ObjectHideFlags: 0

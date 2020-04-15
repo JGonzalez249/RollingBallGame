@@ -138,7 +138,7 @@ public class RotateLevel : MonoBehaviour
         isRotatingRight = true;
         yield return new WaitForSeconds(0.5f);
         isRotatingRight = false;
-        prb.AddForce(10, 0, 0, ForceMode.Impulse);
+        prb.AddForce(5, 0, 0, ForceMode.Impulse);
         cooldown = true;
         yield return new WaitForSeconds(0.1f);
         cooldown = false;
@@ -149,7 +149,7 @@ public class RotateLevel : MonoBehaviour
         isRotatingLeft = true;
         yield return new WaitForSeconds(0.5f);
         isRotatingLeft = false;
-        prb.AddForce(-10, 0, 0, ForceMode.Impulse);
+        prb.AddForce(-5, 0, 0, ForceMode.Impulse);
         cooldown = true;
         yield return new WaitForSeconds(0.1f);
         cooldown = false;

@@ -13,6 +13,7 @@ TagManager:
   - Level
   - Wall1
   - Wall2
+  - Checkpoint
   layers:
   - Default
   - TransparentFX

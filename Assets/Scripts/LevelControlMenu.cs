@@ -33,21 +33,21 @@ public class LevelControlMenu : MonoBehaviour
     public void Update()
     {
         numOfButtons = 1;
-        if (GameObject.Find("LevelCount").GetComponent<LevelCount>().levelCount > 1)
+        if (GameObject.Find("LevelCount").GetComponent<LevelCount>().levelCount >= 1)
         {
             numOfButtons = 2;
         }
 
-            if (buttonSelection == 1) // button 1 hover
-            {
-                Lvl1.Select();
-                currentButton = Lvl1;
-            }
-            if (buttonSelection == 2 && GameObject.Find("LevelCount").GetComponent<LevelCount>().levelCount == 1) // button 2 hover
-            {
-                Lvl2.Select();
-                currentButton = Lvl2;
-            }
+        if (buttonSelection == 1) // button 1 hover
+        {
+            Lvl1.Select();
+            currentButton = Lvl1;
+        }
+        if (buttonSelection == 2 && GameObject.Find("LevelCount").GetComponent<LevelCount>().levelCount >= 1) // button 2 hover
+        {
+            Lvl2.Select();
+            currentButton = Lvl2;
+        }
 
         if (buttonSelection > numOfButtons) // too high
         {

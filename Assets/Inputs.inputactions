@@ -116,6 +116,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Reel",
+                    "type": "Button",
+                    "id": "2a0cb1f5-fefd-47da-8669-3955df80e041",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ReelRelease",
+                    "type": "Button",
+                    "id": "aa5d66cb-8d1a-43bb-9cac-b3fd5f46753e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -424,6 +440,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "AimLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8c28984c-3776-49cd-bc67-bbdb2648012b",
+                    "path": "<Gamepad>/rightStickPress",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a62558dd-286f-4196-a21d-201d12dcfba8",
+                    "path": "<Gamepad>/rightStickPress",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ReelRelease",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

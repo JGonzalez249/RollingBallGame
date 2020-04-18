@@ -14,6 +14,7 @@ TagManager:
   - Wall1
   - Wall2
   - Checkpoint
+  - Ground
   layers:
   - Default
   - TransparentFX

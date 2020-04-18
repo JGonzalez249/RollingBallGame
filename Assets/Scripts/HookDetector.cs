@@ -8,6 +8,11 @@ public class HookDetector : MonoBehaviour
     {
         if (player.GetComponent<GrapplingHook>().fired == true)
         {
+            if (other.tag == "Ground")
+            {
+                 player.GetComponent<GrapplingHook>().ReturnHook();
+            }
+                
             if (other.tag == "Hookable")
             {
                 player.GetComponent<GrapplingHook>().hooked = true;

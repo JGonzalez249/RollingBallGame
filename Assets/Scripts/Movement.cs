@@ -238,7 +238,7 @@ public class Movement : MonoBehaviour
         if (GameObject.Find("Canvas").GetComponent<PauseMenu>().gameIsPaused == false)
         {
             spin = -1;
-            if (goRight == true) // if previously going right
+            if (rb.velocity.x > 0) // if previously going right
             {
                 
                 spinForce /= 4;
@@ -258,7 +258,7 @@ public class Movement : MonoBehaviour
     {
         if (GameObject.Find("Canvas").GetComponent<PauseMenu>().gameIsPaused == false)
         {
-            if (goRight == false) // if previously going left
+            if (rb.velocity.x < 0) // if previously going left
             {
                 spin = 1;
                 spinForce /= 4;

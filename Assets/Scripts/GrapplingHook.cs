@@ -4,12 +4,13 @@ using UnityEngine.InputSystem;
 
 public class GrapplingHook : MonoBehaviour
 {
+    public GameObject target;
     public GameObject hook;
     public GameObject hookHolder;
     public Rigidbody prb; // player
     public Rigidbody rb; // hook
     public Rigidbody rb2; // hook holder
-    public SpringJoint sj;
+    public ConfigurableJoint cj;
 
     public float hookTravelSpeed;
     public float hookStrength;
@@ -22,6 +23,7 @@ public class GrapplingHook : MonoBehaviour
     public bool aimUp;
 
     public bool reel;
+    public bool drop;
     public bool isReeling = false;
     public bool fired;
     public bool hooked;
@@ -30,18 +32,19 @@ public class GrapplingHook : MonoBehaviour
     public float maxDistance;
     private float currentDistance;
 
-    public GameObject target;
-
     private void Start()
     {
-        sj = GetComponent<SpringJoint>();
-        sj.connectedBody = rb2;
+        cj = GetComponent<ConfigurableJoint>();
+        cj.connectedBody = rb2;
+        cj.xMotion = ConfigurableJointMotion.Free;
+        cj.yMotion = ConfigurableJointMotion.Free;
 
         aimUp = true;
     }
 
     private void Update()
     {
+
         if (fired == true && hooked == false) // firing
         {
             Fire();
@@ -52,36 +55,63 @@ public class GrapplingHook : MonoBehaviour
             }
         }
 
-        if (fired == false && hooked == false && isReeling == false) // hooked something
+        if (fired == false && hooked == false && isReeling == false) // not hooked
         {
-            sj.connectedBody = rb2;
+            cj.connectedBody = rb2;
+            cj.xMotion = ConfigurableJointMotion.Free;
+            cj.yMotion = ConfigurableJointMotion.Free;
         }
 
         if (fired == true && hooked == true && isReeling == false) // hooked something
         {
-            sj.connectedBody = rb;
+            cj.connectedBody = rb;
+            cj.xMotion = ConfigurableJointMotion.Limited;
+            cj.yMotion = ConfigurableJointMotion.Limited;
         }
 
-        if (fired == false && hooked == false) // didn't hook anything
+        if (fired == false && hooked == false && hook.transform.position != hookHolder.transform.position) // didn't hook anything
         {
+            hook.transform.position = Vector3.MoveTowards(hook.transform.position, hookHolder.transform.position, 2f);
             ReturnHook();
         }
-        if (reel == true && hooked == true)
+        if (reel == false && hooked == true && drop == true) // dropping
+        {
+            if (hookHolder.transform.position != hook.transform.position)
+            this.transform.position = Vector3.MoveTowards(this.transform.position, hook.transform.position, -0.2f);
+            hook.transform.position = Vector3.MoveTowards(hook.transform.position, hookHolder.transform.position, -0.2f);
+            if (prb.velocity.y > 0) // rising
+            {
+                prb.velocity = new Vector3(prb.velocity.x / 1.01f, 0, 0);
+            }
+            if (prb.velocity.y < 0) // falling
+            {
+                prb.velocity = new Vector3(prb.velocity.x / 1.01f, prb.velocity.y, 0);
+            }
+            isReeling = true;
+            cj.connectedBody = rb2;
+        }
+
+        if (reel == true && hooked == true && drop == false) // reeling
         {
             if (hookHolder.transform.position != hook.transform.position)
             this.transform.position = Vector3.MoveTowards(this.transform.position, hook.transform.position, 0.2f);
             hook.transform.position = Vector3.MoveTowards(hook.transform.position, hookHolder.transform.position, 0.2f);
-            prb.velocity = new Vector3(0, 0, 0);
+            if (prb.velocity.y < 0) // falling
+            {
+                prb.velocity = new Vector3(prb.velocity.x / 1.01f, 0, 0);
+            }
+            if (prb.velocity.y > 0)
+            {
+                prb.velocity = new Vector3(prb.velocity.x / 1.01f, prb.velocity.y, 0);
+            }
             isReeling = true;
-            reel = true;
-            sj.connectedBody = rb2;
-            prb.useGravity = false;
+            cj.connectedBody = rb2;
         }
-        if (reel == false && hooked == true)
+
+        if (reel == false && hooked == true && drop == false) // neither reel or drop
         {
-            prb.useGravity = true;
-            sj.connectedBody = rb; // update position
-            reel = false;
+            //prb.useGravity = true;
+            cj.connectedBody = rb; // update position
             isReeling = false;
         }
     }
@@ -112,25 +142,42 @@ public class GrapplingHook : MonoBehaviour
 
             if (fired == true && hooked == true) // return if out
             {
-                
                 ReturnHook();
             }
         }
     }
 
-    private IEnumerator OnReel(InputValue value) // east - right button
+    private IEnumerator OnReel(InputValue value) // right bumper
     {
-        if (hooked == true && isReeling == false)
+        if (hooked == true && isReeling == false && drop == false)
         {
             yield return reel = true;
+            prb.velocity = new Vector3(prb.velocity.x / 2, prb.velocity.y, 0);
         }
     }
 
-    private IEnumerator OnReelRelease(InputValue value) // east - right button
+    private IEnumerator OnReelRelease(InputValue value) // right bumper release
     {
-        if (hooked == true && isReeling == true)
+        if (hooked == true && isReeling == true && drop == false)
         {
             yield return reel = false;
+        }
+    }
+
+    private IEnumerator OnDrop(InputValue value) // left bumper
+    {
+        if (hooked == true && isReeling == false && reel == false)
+        {
+            yield return drop = true;
+            prb.velocity = new Vector3(prb.velocity.x / 2, prb.velocity.y, 0);
+        }
+    }
+
+    private IEnumerator OnDropRelease(InputValue value) // left bumper release
+    {
+        if (hooked == true && isReeling == true && reel == false)
+        {
+            yield return drop = false;
         }
     }
     private void OnTriggerStay(Collider other)
@@ -168,10 +215,11 @@ public class GrapplingHook : MonoBehaviour
 
     public void ReturnHook()
     {
+        
         hook.transform.rotation = hookHolder.transform.rotation;
-        hook.transform.position = hookHolder.transform.position;
+        //hook.transform.position = hookHolder.transform.position;
         fired = false;
         hooked = false;
-        sj.connectedBody = rb2;
+        cj.connectedBody = rb2;
     }
 }

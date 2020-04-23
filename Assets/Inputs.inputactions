@@ -132,6 +132,22 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Drop",
+                    "type": "Button",
+                    "id": "ade53b72-d4ec-467a-9087-3b2e20edadbf",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "DropRelease",
+                    "type": "Button",
+                    "id": "53329adc-1db2-4860-8c63-f0596c92c60d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -445,8 +461,30 @@
                 },
                 {
                     "name": "",
-                    "id": "8c28984c-3776-49cd-bc67-bbdb2648012b",
-                    "path": "<Gamepad>/rightStickPress",
+                    "id": "89b90ce0-97e1-4cce-ac10-7cd46f892f21",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Drop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1f698298-5e5d-4a58-adb5-2ee142d2ea55",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DropRelease",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a90715a5-7168-44a9-af8e-e7f26d6c003c",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "Press",
                     "processors": "",
                     "groups": "",
@@ -456,8 +494,8 @@
                 },
                 {
                     "name": "",
-                    "id": "a62558dd-286f-4196-a21d-201d12dcfba8",
-                    "path": "<Gamepad>/rightStickPress",
+                    "id": "90bb4dea-5b37-456e-b82f-ff2023c70133",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "Press(behavior=1)",
                     "processors": "",
                     "groups": "",

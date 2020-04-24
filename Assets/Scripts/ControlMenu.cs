@@ -94,7 +94,6 @@ public class ControlMenu : MonoBehaviour
             //confirm press
             if (Gamepad.current.buttonEast.wasPressedThisFrame || Keyboard.current.enterKey.wasPressedThisFrame)
             {
-                Debug.Log("Click");
                 currentButton.onClick.Invoke();
             }
         }

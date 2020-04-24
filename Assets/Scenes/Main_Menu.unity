@@ -4032,6 +4032,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2006407373}
   - component: {fileID: 2006407372}
+  - component: {fileID: 2006407374}
   m_Layer: 0
   m_Name: Music
   m_TagString: Untagged
@@ -4149,6 +4150,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2006407374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006407371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62070a86150600c4395acbeb1588e280, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentScene:
+    m_Handle: 0
+  previousScene:
+    m_Handle: 0
+  MusicSource: {fileID: 2006407372}
+  MenuMusic: {fileID: 8300000, guid: 0b575feb20dd81741817b781f459d9d6, type: 3}
+  GameplayMusic: {fileID: 8300000, guid: 9f2caccf043a6454dadfb0707dba1b27, type: 3}
+  VictoryMusic: {fileID: 8300000, guid: c9b4e722f05f62347a8bb05dc6cb1eae, type: 3}
 --- !u!1 &2016101589
 GameObject:
   m_ObjectHideFlags: 0

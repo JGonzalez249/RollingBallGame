@@ -44,6 +44,13 @@ public class GrapplingHook : MonoBehaviour
 
     private void Update()
     {
+        if (currentDistance > maxDistance) // don't let hook go too far
+        {
+            currentDistance = maxDistance;
+            drop = false;
+        }
+
+        currentDistance = Vector3.Distance(transform.position, hook.transform.position);
 
         if (fired == true && hooked == false) // firing
         {
@@ -74,7 +81,7 @@ public class GrapplingHook : MonoBehaviour
             hook.transform.position = Vector3.MoveTowards(hook.transform.position, hookHolder.transform.position, 2f);
             ReturnHook();
         }
-        if (reel == false && hooked == true && drop == true) // dropping
+        if (reel == false && hooked == true && drop == true && currentDistance < maxDistance) // dropping
         {
             if (hookHolder.transform.position != hook.transform.position)
             this.transform.position = Vector3.MoveTowards(this.transform.position, hook.transform.position, -0.2f);
@@ -125,16 +132,19 @@ public class GrapplingHook : MonoBehaviour
                 yield return fired = true;
                 if (aimRight == true)
                 {
+                    hook.transform.rotation = Quaternion.Euler(0, 0, -45);
                     shootDirX = 1;
                     shootDirY = 1;
                 }
                 if (aimLeft == true)
                 {
+                    hook.transform.rotation = Quaternion.Euler(0, 0, 45);
                     shootDirX = -1;
                     shootDirY = 1;
                 }
                 if (aimUp == true)
                 {
+                    hook.transform.rotation = Quaternion.Euler(0, 0, 0);
                     shootDirY = 1;
                     shootDirX = 0;
                 }
@@ -193,30 +203,32 @@ public class GrapplingHook : MonoBehaviour
 
     private void Fire()  //firing the hook
     {
-        if (aimRight == true) // right
+        Vector3 hookVel = new Vector3(prb.velocity.x / 20, 3 * shootDirY, 0);
+        hook.transform.Translate(hookVel * Time.deltaTime * hookTravelSpeed);
+        /*if (aimRight == true) // right
         {
             Vector3 hookVel = new Vector3(3 * shootDirX + Mathf.Abs(prb.velocity.x / 20), 3 * shootDirY, 0);
             hook.transform.Translate(hookVel * Time.deltaTime * hookTravelSpeed);
-            currentDistance = Vector3.Distance(transform.position, hook.transform.position);
+            //currentDistance = Vector3.Distance(transform.position, hook.transform.position);
         }
         if (aimUp == true)
         {
             Vector3 hookVel = new Vector3(prb.velocity.x / 20, 3 * shootDirY, 0);
             hook.transform.Translate(hookVel * Time.deltaTime * hookTravelSpeed);
-            currentDistance = Vector3.Distance(transform.position, hook.transform.position);
+            //currentDistance = Vector3.Distance(transform.position, hook.transform.position);
         }
         if (aimLeft == true) // left
         {
             Vector3 hookVel = new Vector3(3 * shootDirX - Mathf.Abs(prb.velocity.x / 20), 3 * shootDirY, 0);
             hook.transform.Translate(hookVel * Time.deltaTime * hookTravelSpeed);
-            currentDistance = Vector3.Distance(transform.position, hook.transform.position);
-        }
+            //currentDistance = Vector3.Distance(transform.position, hook.transform.position);
+        }*/
     }
 
     public void ReturnHook()
     {
         
-        hook.transform.rotation = hookHolder.transform.rotation;
+        //hook.transform.rotation = hookHolder.transform.rotation;
         //hook.transform.position = hookHolder.transform.position;
         fired = false;
         hooked = false;

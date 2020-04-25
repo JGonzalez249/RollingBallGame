@@ -7,6 +7,9 @@ using UnityEngine.InputSystem;
 public class ControlPauseMenu : MonoBehaviour
 {
     public Button currentButton;
+
+    public GameObject Indicator;
+
     //Pause Menu
     public Button button1;
     public Button button2;
@@ -20,8 +23,14 @@ public class ControlPauseMenu : MonoBehaviour
     public int numOfButtons;
     public int buttonSelection;
 
-    void Start()
+    void Awake()
     {
+        Indicator = GameObject.Find("Indicator");
+        if (Indicator == null)
+        {
+            Debug.Log("Can't find Indicator");
+        }
+        //Indicator.transform.position = new Vector3(button1.transform.position.x - 150, button1.transform.position.y, 0); // put indicator on first button to begin
         controlPauseMenu = false;
         buttonSelection = 1;
     }
@@ -37,16 +46,19 @@ public class ControlPauseMenu : MonoBehaviour
                 {
                     button1.Select();
                     currentButton = button1;
+                    Indicator.transform.position = new Vector3(button1.transform.position.x - 150, button1.transform.position.y, 0);
                 }
                 if (buttonSelection == 2) // button 2 hover
                 {
                     button2.Select();
                     currentButton = button2;
+                    Indicator.transform.position = new Vector3(button2.transform.position.x - 150, button2.transform.position.y, 0);
                 }
                 if (buttonSelection == 3) // button 3 hover
                 {
                     button3.Select();
                     currentButton = button3;
+                    Indicator.transform.position = new Vector3(button3.transform.position.x - 150, button3.transform.position.y, 0);
                 }
             }
             else if (GameObject.Find("Canvas").GetComponent<PauseMenu>().inControlsMenu == true) // if Control Menu is enabled
@@ -55,6 +67,7 @@ public class ControlPauseMenu : MonoBehaviour
 
                 controlBackButton.Select();
                 currentButton = controlBackButton;
+                Indicator.transform.position = new Vector3(controlBackButton.transform.position.x - 100, controlBackButton.transform.position.y, 0);
             }
         
             if (buttonSelection > numOfButtons) // too high

@@ -14,6 +14,8 @@ public class LevelControlMenu : MonoBehaviour
     public Button Lvl2;
     public Button Back;
 
+    private GameObject Indicator;
+
     public Scene currentScene;
     public string sceneName;
 
@@ -24,6 +26,11 @@ public class LevelControlMenu : MonoBehaviour
 
     void Start()
     {
+        Indicator = GameObject.Find("Indicator");
+        if (Indicator == null)
+        {
+            Debug.Log("Can't find Indicator");
+        }
         // Create a temporary reference to the current scene.
         currentScene = SceneManager.GetActiveScene();
         buttonSelection = 1;
@@ -43,21 +50,25 @@ public class LevelControlMenu : MonoBehaviour
         {
             Lvl1.Select();
             currentButton = Lvl1;
+            Indicator.transform.position = new Vector3(Lvl1.transform.position.x - 150, Lvl1.transform.position.y, 0);
         }
         if (buttonSelection == 2 && GameObject.Find("LevelCount").GetComponent<LevelCount>().levelCount < 1) // button 2 hover - Back
         {
             Back.Select();
             currentButton = Back;
+            Indicator.transform.position = new Vector3(Back.transform.position.x - 150, Back.transform.position.y, 0);
         }
         if (buttonSelection == 2 && GameObject.Find("LevelCount").GetComponent<LevelCount>().levelCount >= 1) // button 2 hover - lvl 2 with lvl 2 active
         {
             Lvl2.Select();
             currentButton = Lvl2;
+            Indicator.transform.position = new Vector3(Lvl2.transform.position.x - 150, Lvl2.transform.position.y, 0);
         }
         if (buttonSelection == 3 && GameObject.Find("LevelCount").GetComponent<LevelCount>().levelCount >= 1) // button 3 hover - Back with lvl 2 active
         {
             Back.Select();
             currentButton = Back;
+            Indicator.transform.position = new Vector3(Back.transform.position.x - 150, Back.transform.position.y, 0);
         }
 
         if (buttonSelection > numOfButtons) // too high

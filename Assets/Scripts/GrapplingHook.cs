@@ -227,8 +227,7 @@ public class GrapplingHook : MonoBehaviour
 
     public void ReturnHook()
     {
-        
-        //hook.transform.rotation = hookHolder.transform.rotation;
+        hook.transform.rotation = hookHolder.transform.rotation;
         //hook.transform.position = hookHolder.transform.position;
         fired = false;
         hooked = false;

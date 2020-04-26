@@ -11,6 +11,7 @@ public class GrapplingHook : MonoBehaviour
     public Rigidbody rb; // hook
     public Rigidbody rb2; // hook holder
     public ConfigurableJoint cj;
+    public AudioSource HookSound;
 
     public float hookTravelSpeed;
     public float hookStrength;
@@ -117,7 +118,6 @@ public class GrapplingHook : MonoBehaviour
 
         if (reel == false && hooked == true && drop == false) // neither reel or drop
         {
-            //prb.useGravity = true;
             cj.connectedBody = rb; // update position
             isReeling = false;
         }
@@ -129,6 +129,7 @@ public class GrapplingHook : MonoBehaviour
         {
             if (fired == false && hooked == false)
             {
+                HookSound.Play();
                 yield return fired = true;
                 if (aimRight == true)
                 {
@@ -205,30 +206,11 @@ public class GrapplingHook : MonoBehaviour
     {
         Vector3 hookVel = new Vector3(prb.velocity.x / 20, 3 * shootDirY, 0);
         hook.transform.Translate(hookVel * Time.deltaTime * hookTravelSpeed);
-        /*if (aimRight == true) // right
-        {
-            Vector3 hookVel = new Vector3(3 * shootDirX + Mathf.Abs(prb.velocity.x / 20), 3 * shootDirY, 0);
-            hook.transform.Translate(hookVel * Time.deltaTime * hookTravelSpeed);
-            //currentDistance = Vector3.Distance(transform.position, hook.transform.position);
-        }
-        if (aimUp == true)
-        {
-            Vector3 hookVel = new Vector3(prb.velocity.x / 20, 3 * shootDirY, 0);
-            hook.transform.Translate(hookVel * Time.deltaTime * hookTravelSpeed);
-            //currentDistance = Vector3.Distance(transform.position, hook.transform.position);
-        }
-        if (aimLeft == true) // left
-        {
-            Vector3 hookVel = new Vector3(3 * shootDirX - Mathf.Abs(prb.velocity.x / 20), 3 * shootDirY, 0);
-            hook.transform.Translate(hookVel * Time.deltaTime * hookTravelSpeed);
-            //currentDistance = Vector3.Distance(transform.position, hook.transform.position);
-        }*/
     }
 
     public void ReturnHook()
     {
         hook.transform.rotation = hookHolder.transform.rotation;
-        //hook.transform.position = hookHolder.transform.position;
         fired = false;
         hooked = false;
         cj.connectedBody = rb2;

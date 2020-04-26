@@ -84,7 +84,7 @@ public class ControlMenu : MonoBehaviour
 
                 controlBackButton.Select();
                 currentButton = controlBackButton;
-                Indicator.transform.position = new Vector3(controlBackButton.transform.position.x / 2.5f, controlBackButton.transform.position.y, 0);
+                Indicator.transform.position = new Vector3(controlBackButton.transform.position.x / 1.3f, controlBackButton.transform.position.y, 0);
             }
             else if (GameObject.Find("Canvas").GetComponent<MainMenu>().inCreditsMenu == true) // if Credits Menu is enabled
             {

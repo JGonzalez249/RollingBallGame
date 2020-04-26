@@ -67,7 +67,7 @@ public class ControlPauseMenu : MonoBehaviour
 
                 controlBackButton.Select();
                 currentButton = controlBackButton;
-                Indicator.transform.position = new Vector3(controlBackButton.transform.position.x / 2.5f, controlBackButton.transform.position.y, 0);
+                Indicator.transform.position = new Vector3(controlBackButton.transform.position.x / 1.3f, controlBackButton.transform.position.y, 0);
             }
         
             if (buttonSelection > numOfButtons) // too high

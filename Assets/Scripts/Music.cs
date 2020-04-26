@@ -10,14 +10,16 @@ public class Music : MonoBehaviour
 
     public AudioSource MusicSource;
     public AudioClip MenuMusic;
-    public AudioClip GameplayMusic;
+    public AudioClip Lvl1Music;
+    public AudioClip Lvl2Music;
     public AudioClip VictoryMusic;
 
-    private bool music;
+    private bool playmain;
     private static Music Instance;
 
     void Awake()
     {
+        playmain = true;
         DontDestroyOnLoad(this);
 
         if (Instance == null)
@@ -37,7 +39,7 @@ public class Music : MonoBehaviour
 
         if (currentScene.name != previousScene.name) // perform once when a scene change happens
         {
-            if (currentSceneName == "Main_Menu" && previousSceneName != "Level_Select") // main menu and level select - doesn't repeat song if go from Level select to Main Menu
+            if (currentSceneName == "Main_Menu" && playmain == true) // main menu and level select - doesn't repeat song if go from Level select to Main Menu
             {
                 MusicSource.Stop();
                 MusicSource.clip = MenuMusic;
@@ -45,6 +47,7 @@ public class Music : MonoBehaviour
                 MusicSource.pitch = 1;
                 MusicSource.Play();
                 previousScene = currentScene;
+                playmain = false;
             }
             if (currentSceneName == "LevelSelect") // Level Select - don't play different music - DOESN'T WORK
             {
@@ -53,29 +56,32 @@ public class Music : MonoBehaviour
                 if (currentSceneName == "Level_1") // Level 1
             {
                 MusicSource.Stop();
-                MusicSource.clip = GameplayMusic;
+                MusicSource.clip = Lvl1Music;
                 MusicSource.loop = true;
                 MusicSource.pitch = 0.8f;
                 MusicSource.Play();
                 previousScene = currentScene;
+                playmain = true;
             }
             if (currentSceneName == "Level_2") // Level 2
             {
                 MusicSource.Stop();
-                MusicSource.clip = GameplayMusic;
+                MusicSource.clip = Lvl2Music;
                 MusicSource.loop = true;
                 MusicSource.pitch = 0.8f;
                 MusicSource.Play();
                 previousScene = currentScene;
+                playmain = true;
             }
             if (currentSceneName == "Victory_Menu") // VictoryMenu
             {
                 MusicSource.Stop();
                 MusicSource.clip = VictoryMusic;
-                MusicSource.loop = false;
+                MusicSource.loop = true;
                 MusicSource.pitch = 0.8f;
                 MusicSource.Play();
                 previousScene = currentScene;
+                playmain = true;
             }
         }
     }

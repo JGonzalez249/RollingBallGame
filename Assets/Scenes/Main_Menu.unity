@@ -14073,7 +14073,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8b39f3737cf35b548bb021dd2957e05b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 55958383308f7944095d32f2e0bf165e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14127,7 +14127,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -238, y: 103}
+  m_AnchoredPosition: {x: -4, y: 50}
   m_SizeDelta: {x: 372, y: 226}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1847903869
@@ -15007,9 +15007,10 @@ MonoBehaviour:
   previousScene:
     m_Handle: 0
   MusicSource: {fileID: 2006407372}
-  MenuMusic: {fileID: 8300000, guid: 0b575feb20dd81741817b781f459d9d6, type: 3}
-  GameplayMusic: {fileID: 8300000, guid: 9f2caccf043a6454dadfb0707dba1b27, type: 3}
-  VictoryMusic: {fileID: 8300000, guid: c9b4e722f05f62347a8bb05dc6cb1eae, type: 3}
+  MenuMusic: {fileID: 8300000, guid: b5bbaa0ede5d4ff438d6501926cb1f44, type: 3}
+  Lvl1Music: {fileID: 8300000, guid: 9f2caccf043a6454dadfb0707dba1b27, type: 3}
+  Lvl2Music: {fileID: 8300000, guid: 3ba17fb0835102b42bc46a01007770bf, type: 3}
+  VictoryMusic: {fileID: 8300000, guid: 58f997e6c18afa84caf8bf6e62ac06a7, type: 3}
 --- !u!4 &2015103776 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 3d307e1c9f8b87049b2de05b9d475d43,

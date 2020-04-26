@@ -1106,7 +1106,7 @@ MonoBehaviour:
   powerBar: {fileID: 0}
   barMultiplier: 7
   speedMultiplier: 15
-  maxSpeed: 30
+  maxSpeed: 20
   holdLeft: 0
   holdRight: 0
   goRight: 0

@@ -39,6 +39,7 @@ public class Respawn : MonoBehaviour
 
     private IEnumerator respawn()
     {
+        this.transform.position = RespawnPosition.transform.position;
         death = false;
 
         //move to respawn position
@@ -48,7 +49,7 @@ public class Respawn : MonoBehaviour
         GameObject.Find("Player").GetComponent<Movement>().rb.velocity = new Vector3(0, 0, 0);// stop
         GameObject.Find("Player").GetComponent<GrapplingHook>().ReturnHook(); // return hook
         GameObject.Find("Player").GetComponent<Movement>().spinForce = 0; // stop spinning
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         RespawnTxt.text = "";
     }
 

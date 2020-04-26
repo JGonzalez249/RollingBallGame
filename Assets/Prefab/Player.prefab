@@ -1104,7 +1104,7 @@ MonoBehaviour:
   ChargeSource: {fileID: 0}
   ChargeRelease: {fileID: 0}
   powerBar: {fileID: 0}
-  barMultiplier: 7
+  barMultiplier: 5
   speedMultiplier: 15
   maxSpeed: 20
   holdLeft: 0

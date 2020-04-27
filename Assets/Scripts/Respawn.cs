@@ -5,8 +5,7 @@ using UnityEngine.UI;
 public class Respawn : MonoBehaviour
 {
     public GameObject RespawnPosition;
-
-    public Text RespawnTxt;
+    public GameObject RespawnTxt;
 
     public int respawnFloor;
 
@@ -15,8 +14,9 @@ public class Respawn : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        RespawnTxt = GameObject.FindWithTag("RespawnTxt");
         death = false;
-        RespawnTxt.text = "";
+        RespawnTxt.SetActive(false);
         RespawnPosition = GameObject.FindGameObjectWithTag("Respawn");
     }
 
@@ -29,35 +29,19 @@ public class Respawn : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Checkpoint")
-        {
-            StartCoroutine(checkpoint());
-        }
-    }
-
     private IEnumerator respawn()
     {
         this.transform.position = RespawnPosition.transform.position;
         death = false;
 
         //move to respawn position
-        RespawnTxt.text = "Respawn";
+        RespawnTxt.SetActive(true);
         GameObject.Find("Player").GetComponent<Ghosting>().usingGhosting = false; // turn off ghosting
         GameObject.Find("Player").GetComponent<Movement>().force = 0f; // reset force
         GameObject.Find("Player").GetComponent<Movement>().rb.velocity = new Vector3(0, 0, 0);// stop
         GameObject.Find("Player").GetComponent<GrapplingHook>().ReturnHook(); // return hook
         GameObject.Find("Player").GetComponent<Movement>().spinForce = 0; // stop spinning
         yield return new WaitForSeconds(1f);
-        RespawnTxt.text = "";
-    }
-
-    private IEnumerator checkpoint()
-    {
-        RespawnTxt.text = "Checkpoint";
-        RespawnPosition = GameObject.FindGameObjectWithTag("Checkpoint");
-        yield return new WaitForSeconds(1f);
-        RespawnTxt.text = "";
+        RespawnTxt.SetActive(false);
     }
 }

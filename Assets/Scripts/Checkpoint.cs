@@ -16,7 +16,7 @@ public class Checkpoint : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            GameObject.Find("Player").GetComponent<Respawn>().RespawnPosition.transform.position = this.transform.position;
+            GameObject.Find("Player").GetComponent<Respawn>().RespawnPosition.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 10, this.transform.position.z);
             StartCoroutine(checkpoint());
         }
     }
